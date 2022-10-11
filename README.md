@@ -1,6 +1,6 @@
 # C2F+S&B
-## Cristobal Pais, Jaime Carrasco, David Martell, David L. Woodruff, Andres Weintraub
-C2F+S&B is an open-source wildfire simulator based on Cell2Fire and the Scott And Burgan Fuel Model
+## Jaime Carrasco, Cristobal Pais, José Ramón Gonzalez, Jordi Garcia, David Palacios, Rodrigo Mahaluf, and Andres Weintraub
+C2F+S&B is an open-source wildfire simulator based on Cell2Fire and the Scott And Burgan Fuel Models
 
 # Requirements
 - Boost (C++)
