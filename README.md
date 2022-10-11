@@ -1,4 +1,4 @@
-# Cell2Fire_Spain_Linux
+# C2F+S&B
 ## Cristobal Pais, Jaime Carrasco, David Martell, David L. Woodruff, Andres Weintraub
 C2F+S&B is an open-source wildfire simulator based on Cell2Fire and the Scott And Burgan Fuel Model
 
