@@ -11,6 +11,7 @@ C2F+S&B is an open-source wildfire simulator based on Cell2Fire and the Scott An
 - matplotlib
 - seaborn
 - tqdm
+- rasterio
 - networkx (for stats module)
 
 # Usage
@@ -24,9 +25,9 @@ $ python main.py -h
 ```
 
 
-# Post-Processing  
-Only processing (reads a previously simulated instance and computes stats/plots).
-Important: provide the number of sims --nsims to be processed
+# Console usage (on development)
+To use the simulator with a console (via python), the following command can be used:
 ```
-$ python main.py --input-instance-folder /mnt/c/Users/Lenovo/documents/GitHub/Cell2Fire/data/9cells/ --output-folder /mnt/c/Users/Lenovo/Desktop/9cells --nsims 10 --stats --allPlots --onlyProcessing
+$ python window.py
 ```
+Importante: not all arguments are implemented on the console
