@@ -30,4 +30,4 @@ To use the simulator with a console (via python), the following command can be u
 ```
 $ python window.py
 ```
-Importante: not all arguments are implemented on the console
+Important: not all arguments are implemented on the console
