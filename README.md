@@ -2,18 +2,6 @@
 ## Jaime Carrasco, Cristobal Pais, José Ramón Gonzalez, Jordi Garcia, David Palacios, Rodrigo Mahaluf, and Andres Weintraub
 C2F+S&B is an open-source wildfire simulator based on Cell2Fire and the Scott And Burgan Fuel Models
 
-# Requirements
-- Boost (C++)
-- Eigen (C++)
-- Python 3.6
-- numpy
-- pandas
-- matplotlib
-- seaborn
-- tqdm
-- rasterio
-- networkx (for stats module)
-
 # Disclaimer
 This software is for research use only. There is no warranty of any kind; there is not even the implied warranty of fitness for use.
 
@@ -32,6 +20,17 @@ Installation may require some familiarity with C++, make, and Python.
 * cd .. 
 * pip install -r requirements.txt
 
+# Requirements
+- Boost (C++)
+- Eigen (C++)
+- Python 3.6
+- numpy
+- pandas
+- matplotlib
+- seaborn
+- tqdm
+- rasterio
+- networkx (for stats module)
 
 # Usage
 In order to run the simulator and process the results, the following command can be used:
