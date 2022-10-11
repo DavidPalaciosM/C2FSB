@@ -41,6 +41,7 @@ For the full list of arguments and their explanation use:
 ```
 $ python main.py -h
 ```
+A tutorial can be found at [C2F+S&B Tutorial](https://github.com/fire2a/C2FSB/blob/main/C2FS%26B_Tutorial.pdf)
 
 # Console usage (on development)
 To use the simulator with a console (via python), the following command can be used:
