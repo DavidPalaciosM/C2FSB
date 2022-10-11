@@ -204,7 +204,7 @@ def GenDataFile(InFolder):
     FBPlookup = os.path.join(InFolder, "spain_lookup_table.csv")
     FBPDict, ColorsDict =  Dictionary(FBPlookup)
     
-    FGrid = os.path.join(InFolder, "Forest.asc")
+    FGrid = os.path.join(InFolder, "fuels.asc")
     GFuelTypeN, GFuelType, Rows, Cols, CellSide = ForestGrid(FGrid, FBPDict)
     
     NCells = len(GFuelType)
