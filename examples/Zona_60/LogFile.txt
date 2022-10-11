@@ -1,0 +1,85 @@
+------ Command line values ------
+InFolder: data/Zona_60/ 
+OutFolder: results/Zona_60 
+WeatherOpt: random 
+HarvestPlan:  
+OutMessages: 1 
+OutputGrids: 1 
+FinalGrid: 1 
+TotalYears: 1 
+TotalSims: 5 
+NWeatherFiles: 900 
+FirePeriodLength: 1.0 
+IgnitionRadius: 0 
+ROSThreshold: 0.1 
+HFIThreshold: 0.1 
+HFactor: 1.0 
+FFactor: 1.0 
+BFactor: 1.0 
+EFactor: 1.0 
+CBDFactor: 0.0 
+CCFFactor: 0.0 
+ROS10Factor: 3.34 
+ROS-CV: 0.0 
+seed: 123 
+nthreads: 5 
+Forest DataFrame from instance data/Zona_60/Data.csv
+Number of cells: 392826
+
+Weather DataFrame from instance data/Zona_60/Weather.csv
+Weather Periods: 72
+Serial version executionSerial version executionSerial version execution
+Serial version execution
+
+Serial version execution
+
+
+Weather file selected: data/Zona_60/Weathers/Weather1.csv
+Weather Periods: 24
+
+Selected (Random) ignition point for Year 1, sim 1: 199246
+Weather file selected: data/Zona_60/Weathers/Weather2.csv
+Weather Periods: 24
+
+Selected (Random) ignition point for Year 1, sim 3: 208262
+Weather file selected: data/Zona_60/Weathers/Weather198.csv
+Weather Periods: 24
+
+Weather file selected: data/Zona_60/Weathers/Weather4.csv
+Weather Periods: 24
+
+Weather file selected: data/Zona_60/Weathers/Weather3.csv
+Weather Periods: 24
+
+Selected (Random) ignition point for Year 1, sim 2: 116323
+Selected (Random) ignition point for Year 1, sim 5: 216143
+Selected (Random) ignition point for Year 1, sim 4: 102965
+----------------------------- Results -----------------------------
+Total Available Cells:    151016 - % of the Forest: 38.4435%
+Total Burnt Cells:        21 - % of the Forest: 0.00534588%
+Total Non-Burnable Cells: 241789 - % of the Forest: 61.5512%
+Total Harvested Cells: 0 - % of the Forest: 0%
+
+----------------------------- Results -----------------------------
+Total Available Cells:    140498 - % of the Forest: 35.766%
+Total Burnt Cells:        10539 - % of the Forest: 2.68287%
+Total Non-Burnable Cells: 241789 - % of the Forest: 61.5512%
+Total Harvested Cells: 0 - % of the Forest: 0%
+
+----------------------------- Results -----------------------------
+Total Available Cells:    98879 - % of the Forest: 25.1712%
+Total Burnt Cells:        52158 - % of the Forest: 13.2776%
+Total Non-Burnable Cells: 241789 - % of the Forest: 61.5512%
+Total Harvested Cells: 0 - % of the Forest: 0%
+
+----------------------------- Results -----------------------------
+Total Available Cells:    111689 - % of the Forest: 28.4322%
+Total Burnt Cells:        39348 - % of the Forest: 10.0166%
+Total Non-Burnable Cells: 241789 - % of the Forest: 61.5512%
+Total Harvested Cells: 0 - % of the Forest: 0%
+
+----------------------------- Results -----------------------------
+Total Available Cells:    82148 - % of the Forest: 20.9121%
+Total Burnt Cells:        68889 - % of the Forest: 17.5368%
+Total Non-Burnable Cells: 241789 - % of the Forest: 61.5512%
+Total Harvested Cells: 0 - % of the Forest: 0%

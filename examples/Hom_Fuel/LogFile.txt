@@ -1,0 +1,67 @@
+------ Command line values ------
+InFolder: data/Hom_Fuel_101_40x40/ 
+OutFolder: results/Hom_Fuel 
+WeatherOpt: rows 
+HarvestPlan:  
+OutMessages: 1 
+OutputGrids: 1 
+FinalGrid: 1 
+TotalYears: 1 
+TotalSims: 5 
+NWeatherFiles: 1 
+FirePeriodLength: 1.0 
+IgnitionRadius: 0 
+ROSThreshold: 0.1 
+HFIThreshold: 0.1 
+HFactor: 1.0 
+FFactor: 1.0 
+BFactor: 1.0 
+EFactor: 1.0 
+CBDFactor: 0.0 
+CCFFactor: 0.0 
+ROS10Factor: 3.34 
+ROS-CV: 0.0 
+seed: 123 
+nthreads: 2 
+Forest DataFrame from instance data/Hom_Fuel_101_40x40/Data.csv
+Number of cells: 1600
+
+Weather DataFrame from instance data/Hom_Fuel_101_40x40/Weather.csv
+Weather Periods: 5
+Serial version executionSerial version execution
+
+
+Selected (Random) ignition point for Year 1, sim 1: 892
+Selected (Random) ignition point for Year 1, sim 4: 366
+----------------------------- Results -----------------------------
+Total Available Cells:    1481 - % of the Forest: 92.5625%
+Total Burnt Cells:        119 - % of the Forest: 7.4375%
+Total Non-Burnable Cells: 0 - % of the Forest: 0%
+Total Harvested Cells: 0 - % of the Forest: 0%
+
+----------------------------- Results -----------------------------
+Total Available Cells:    1463 - % of the Forest: 91.4375%
+Total Burnt Cells:        137 - % of the Forest: 8.5625%
+Total Non-Burnable Cells: 0 - % of the Forest: 0%
+Total Harvested Cells: 0 - % of the Forest: 0%
+
+Selected (Random) ignition point for Year 1, sim 5: 1280
+Selected (Random) ignition point for Year 1, sim 2: 192
+----------------------------- Results -----------------------------
+Total Available Cells:    1523 - % of the Forest: 95.1875%
+Total Burnt Cells:        77 - % of the Forest: 4.8125%
+Total Non-Burnable Cells: 0 - % of the Forest: 0%
+Total Harvested Cells: 0 - % of the Forest: 0%
+
+----------------------------- Results -----------------------------
+Total Available Cells:    1534 - % of the Forest: 95.875%
+Total Burnt Cells:        66 - % of the Forest: 4.125%
+Total Non-Burnable Cells: 0 - % of the Forest: 0%
+Total Harvested Cells: 0 - % of the Forest: 0%
+
+Selected (Random) ignition point for Year 1, sim 3: 1102
+----------------------------- Results -----------------------------
+Total Available Cells:    1463 - % of the Forest: 91.4375%
+Total Burnt Cells:        137 - % of the Forest: 8.5625%
+Total Non-Burnable Cells: 0 - % of the Forest: 0%
+Total Harvested Cells: 0 - % of the Forest: 0%

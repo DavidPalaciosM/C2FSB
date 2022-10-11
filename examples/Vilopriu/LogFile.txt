@@ -1,0 +1,40 @@
+------ Command line values ------
+InFolder: data/Vilopriu_2013/ 
+OutFolder: results/Vilopriu 
+WeatherOpt: rows 
+HarvestPlan:  
+OutMessages: 1 
+Ignitions: 1 
+OutputGrids: 1 
+FinalGrid: 1 
+TotalYears: 1 
+TotalSims: 1 
+NWeatherFiles: 1 
+FirePeriodLength: 1.0 
+IgnitionRadius: 0 
+ROSThreshold: 0.1 
+HFIThreshold: 0.1 
+HFactor: 1.0 
+FFactor: 1.0 
+BFactor: 1.0 
+EFactor: 1.0 
+CBDFactor: 0.0 
+CCFFactor: 0.0 
+ROS10Factor: 3.34 
+ROS-CV: 0.0 
+seed: 123 
+nthreads: 2 
+Forest DataFrame from instance data/Vilopriu_2013/Data.csv
+Number of cells: 309880
+
+Weather DataFrame from instance data/Vilopriu_2013/Weather.csv
+Weather Periods: 7
+Serial version executionSerial version execution
+
+
+Selected ignition point for Year 1, sim 1: 38326
+----------------------------- Results -----------------------------
+Total Available Cells:    112940 - % of the Forest: 36.4464%
+Total Burnt Cells:        119682 - % of the Forest: 38.622%
+Total Non-Burnable Cells: 77258 - % of the Forest: 24.9316%
+Total Harvested Cells: 0 - % of the Forest: 0%
