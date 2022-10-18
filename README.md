@@ -14,7 +14,7 @@ Work in progress documentation is available at [readthedocs](https://cell2fire.r
 
 # Installation
 Installation may require some familiarity with C++, make, and Python.
-* cd Cell2FireSB/Cell2FireC
+* cd C2FSB/Cell2FireC
 * (edit Makefile to have the correct path to Eigen)
 * make
 * cd .. 
