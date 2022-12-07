@@ -1,9 +1,11 @@
 numpy
 pandas
-matplotlib
+matplotlib==3.5.2
 seaborn
 imread
 tqdm
 python-opencv
 networkx
 rasterio
+scipy
+deap
