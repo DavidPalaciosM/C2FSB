@@ -1,10 +1,15 @@
+wheel
+setuptools
+pip
+ipython
+jupyterlab
+ipywidgets
 numpy
 pandas
 matplotlib==3.5.2
 seaborn
 imread
 tqdm
-opencv-python
 networkx
 rasterio
 scipy

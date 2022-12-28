@@ -213,6 +213,8 @@ class Cell2FireC:
     def DummyMsg(self):
         # Messages path and CWD for returning
         MPath = os.path.join(self.args.OutFolder, "Messages")
+        if not os.path.exists(MPath):
+            os.makedirs(MPath)
         CWD = os.getcwd()
         os.chdir(MPath)
         
@@ -497,6 +499,8 @@ class Cell2FireC:
 
         # Folders
         MessagePath = os.path.join(self.args.OutFolder, "Messages")
+        if not os.path.exists(MessagePath):
+            os.makedirs(MessagePath)
         OutFolder = os.path.join(self.args.OutFolder, "Heuristic")
         if not os.path.exists(OutFolder):
             os.makedirs(OutFolder)

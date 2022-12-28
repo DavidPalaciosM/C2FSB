@@ -22,7 +22,7 @@ import matplotlib.patches as patches
 from matplotlib.colors import LinearSegmentedColormap
 import seaborn as sns
 import matplotlib.colors as colors
-import cv2
+import imread
 
 # Extra
 import multiprocessing
@@ -921,16 +921,14 @@ class Statistics(object):
     def combinePlot(self, BackgroundPath, fileN, Sim):
         # Read Forest
         ForestFile = os.path.join(BackgroundPath, "InitialForest.png")
-        p1 = cv2.imread(ForestFile) 
+        p1 = imread.imread(ForestFile) 
 
         # Read Evo plot
         fstr = str(fileN).zfill(2)
         PathFile = os.path.join(BackgroundPath, "Plots", "Plots"+ str(Sim), "Fire" + fstr + ".png")
-        p2 = cv2.imread(PathFile) 
+        p2 = imread.imread(PathFile) 
 
         # Alpha channels
-        p1 = cv2.cvtColor(p1, cv2.COLOR_BGR2RGBA)
-        p2 = cv2.cvtColor(p2, cv2.COLOR_BGR2RGBA)
         p2[np.all(p2 >= [230, 230, 230, 230], axis=2)] = [0, 0, 0, 1]
 
         # Axis
