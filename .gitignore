@@ -1,3 +1,18 @@
+# No subir nunca ejecutables compilados
+Cell2FireC/Cell2Fire
+Cell2FireC/Cell2Fire.o
+Cell2FireC/CellsFBP.h.gch
+Cell2FireC/CellsFBP.o
+Cell2FireC/Ellipse.o
+Cell2FireC/FuelModelSpain.o
+Cell2FireC/Lightning.o
+Cell2FireC/ReadArgs.o
+Cell2FireC/ReadCSV.o
+Cell2FireC/SpottingFBP.o
+Cell2FireC/WriteCSV.o
+
+
+# Conversado con David
 desktop.ini
 
 # fire2cell results
