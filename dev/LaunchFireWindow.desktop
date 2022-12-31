@@ -1,0 +1,24 @@
+[Desktop Entry]
+Name=Fire Window Launcher
+Comment=Use the Fire Sim
+Keywords=shell;prompt;command;commandline;cmd;
+TryExec=gnome-terminal
+Exec=gnome-terminal -- "/home/fire/C2FSB/dev/LaunchFireWindow.sh"
+Icon=/home/fire/C2FSB/dev/logo.ico
+Type=Application
+Categories=GNOME;GTK;System;TerminalEmulator;
+StartupNotify=true
+StartupWMClass=Gnome-terminal
+X-GNOME-SingleWindow=false
+OnlyShowIn=GNOME;Unity;
+Actions=new-window;preferences;
+X-Ubuntu-Gettext-Domain=gnome-terminal
+Terminal=true
+
+[Desktop Action new-window]
+Name=New Window
+Exec=gnome-terminal --window
+
+[Desktop Action preferences]
+Name=Preferences
+Exec=gnome-terminal --preferences
