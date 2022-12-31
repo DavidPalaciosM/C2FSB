@@ -4,6 +4,7 @@ pip
 ipython
 jupyterlab
 ipywidgets
+ipyfilechooser 
 numpy
 pandas
 matplotlib==3.5.2
