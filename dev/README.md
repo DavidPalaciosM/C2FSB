@@ -26,8 +26,8 @@ $ git clone git@github.com:fire2a/C2FSB.git
 3. Install python environment libraries in its own virtual environment
 ```
 $ cd C2FSB
-C2FSB$ python3 -m venv pyenv
-C2FSB$ source pyenv/bin/activate
+C2FSB$ python3 -m venv pyvenv
+C2FSB$ source pyvenv/bin/activate
 (pyenv) C2FSB$ pip install -U -r requirements.txt
 ```  
 
@@ -73,7 +73,7 @@ C2FSB$ source pyenv/bin/activate
 	--output-folder MyExperiment/ \
 	--nsims 5 \
 	--nthreads 2 \
-	--weather random \
+	--weather rows \
 	--ignitions \
 	--ROS-CV 0.5 \
 	--grids \
