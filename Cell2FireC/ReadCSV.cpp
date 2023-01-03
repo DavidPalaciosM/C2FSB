@@ -173,7 +173,8 @@ void CSVReader::parsePROB(std::vector<float>& probabilities, std::vector<std::ve
 
 
 		// Set values
-		probabilities.push_back(Prob);
+		probabilites[i-1]=Prob;
+		//probabilities.push_back(Prob);
 
 	}
 }
