@@ -19,7 +19,9 @@ desktop.ini
 results/
 
 # py venv
+env/
 pyenv/
+pyvenv/
 
 # vim
 .netrwhist
