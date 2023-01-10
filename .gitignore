@@ -1,3 +1,6 @@
+.gitconfig
+MyExperiment/
+
 # No subir nunca ejecutables compilados
 Cell2FireC/Cell2Fire
 Cell2FireC/Cell2Fire.o
