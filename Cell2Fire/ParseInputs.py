@@ -61,6 +61,11 @@ def ParseInputs():
                         dest="max_fire_periods",
                         type=int,
                         default=1000) 
+    parser.add_argument("--fmc",
+                        help="foliar moisture content for every fuel)",
+                        dest="fmc",
+                        type=int,
+                        default=100) 
     parser.add_argument("--IgnitionRad",
                         help="Adjacents degree for defining an ignition area (around ignition point)",
                         dest="IgRadius",
