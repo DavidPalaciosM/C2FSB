@@ -2,6 +2,7 @@
 #define READCSV
 
 #include "FuelModelSpain.h"
+#include "ReadArgs.h"
 
 #include <iostream>
 #include <fstream>
@@ -53,7 +54,7 @@ public:
 	void printData(std::vector<std::vector<std::string>> & DF);
 	
 	//Populate DF (Spanish version)
-	void parseDF(inputs * df_ptr, std::vector<std::vector<std::string>> & DF, int NCells);
+	void parseDF(inputs * df_ptr, std::vector<std::vector<std::string>> & DF, arguments* args_ptr,int NCells);
 	
 	// Populate NFtypes (Spanish version)
 	void parseNDF(std::vector<int> & NFTypes, std::vector<std::vector<std::string>> & DF, int NCells);

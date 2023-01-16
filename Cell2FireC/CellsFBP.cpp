@@ -327,7 +327,7 @@ std::vector<int> CellsFBP::manageFire(int period, std::unordered_set<int> & Avai
 	df_ptr[this->realId-1].factor_actv = args->CROSActThreshold;
 	df_ptr[this->realId-1].cros = args->AllowCROS;
 	df_ptr[this->realId-1].verbose = args->verbose;
-
+	
 	// Compute main angle and ROSs: forward, flanks and back
     main_outs mainstruct, metrics;
     snd_outs sndstruct;

@@ -179,8 +179,7 @@ Cell2Fire::Cell2Fire(arguments _args) : CSVWeather(_args.InFolder + "Weather.csv
 	df_ptr = & df[0];
 
 	// Populate the df [nCells] objects
-	CSVParser.parseDF(df_ptr, DF, this->nCells);
-
+	CSVParser.parseDF(df_ptr, DF,this->args_ptr, this->nCells);
 	// Initialize and populate relevant vectors 
 	this->fTypeCells = std::vector<int> (this->nCells, 1); 
 	this->fTypeCells2 = std::vector<string> (this->nCells, "Burnable"); 
