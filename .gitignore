@@ -26,6 +26,9 @@
 *.a
 *.lib
 
+#python
+*.pyc
+
 # Executables
 *.exe
 *.out
@@ -33,5 +36,9 @@
 
 #custom files
 
+*.swp
 .DS_Store
 .gitattributes
+.vscode
+Cell2fire/__pycache__
+Cell2fireC/FuelModelSpain_Rothermel.cpp
