@@ -1,0 +1,7 @@
+pandas
+seaborn
+imread
+tqdm
+networkx
+deap
+scipy
