@@ -39,9 +39,13 @@ from shutil import copy2
 # Cell2Fire
 import Cell2Fire.ReadDataPrometheus as ReadDataPrometheus
 
+# debug memory hungry
+from memory_profiler import profile
+matplotlib.use('Agg')
 
 class Statistics(object):
     # Initializer
+    @profile
     def __init__(self,
                  OutFolder="",
                  StatsFolder="",
@@ -60,6 +64,9 @@ class Statistics(object):
                  GGraph=None,
                  tCorrected=False,
                  pdfOutputs=False):
+
+        # recicle just one figure
+        fig = plt.figure()
     
         # Containers
         self._OutFolder = OutFolder
@@ -96,9 +103,11 @@ class Statistics(object):
     #                                  #
     ####################################
     # Plot style
+
+    @profile
     def plt_style(self):
         # Figure
-        plt.figure(figsize = (15, 9)) 
+        plt.figure(1,figsize = (15, 9)) 
 
         # Font sizes
         plt.rcParams['font.size'] = 16
@@ -117,12 +126,14 @@ class Statistics(object):
         ax.get_yaxis().tick_left() 
     
     # Boxplot function
+
+    @profile
     def BoxPlot(self, Data, xx="Hour", yy="Burned", xlab="Hours", ylab="# Burned Cells", 
                 pal="Reds", title="Burned Cells Evolution", Path=None, namePlot="BoxPlot",
                 swarm=True):
         
         # Figure
-        plt.figure(figsize = (15, 9)) 
+        plt.figure(1,figsize = (15, 9)) 
 
         # Font sizes
         plt.rcParams['font.size'] = 16
@@ -189,6 +200,8 @@ class Statistics(object):
         plt.close("all")
     
     # Histograms
+
+    @profile
     def plotHistogram(self, df, NonBurned=False, xx="Hour", xmax=6, KDE=True, title="Histogram: Burned Cells",
                       Path=None, namePlot="Histogram"):
         
@@ -197,7 +210,7 @@ class Statistics(object):
         rcParams['patch.facecolor'] = 'b'
 
         # Figure Size
-        plt.figure(figsize = (15, 9)) 
+        plt.figure(1,figsize = (15, 9)) 
 
         # Font sizes
         plt.rcParams['font.size'] = 16
@@ -241,7 +254,7 @@ class Statistics(object):
     def BPHeatmap(self, WeightedScar, Path=None, nscen=10, sq=False, namePlot="BP_HeatMap", 
                   Title=None, cbarF=True, ticks=100, transparent=False):
         # Figure size
-        plt.figure(figsize = (15, 9)) 
+        plt.figure(1,figsize = (15, 9)) 
 
         # Font sizes
         plt.rcParams['font.size'] = 16
@@ -301,11 +314,13 @@ class Statistics(object):
         plt.close("all")
     
     # ROS Heatmap
+
+    @profile
     def ROSHeatmap(self, ROSM, Path=None, nscen=1, sq=True, namePlot="ROS_HeatMap",
                    Title=None, cbarF=True, ticks="auto", transparent=False, 
                    annot=False, lw=0.01, vmin=0, vmax=None):
         # Figure size
-        plt.figure(figsize = (15, 9)) 
+        plt.figure(1,figsize = (15, 9)) 
 
         # Font sizes
         plt.rcParams['font.size'] = 16
@@ -387,6 +402,8 @@ class Statistics(object):
         
     
     # ROS Matrix
+
+    @profile
     def ROSMatrix_AVG(self, nSim): 
         msgFileName = "MessagesFile0" if (nSim < 10) else "MessagesFile"
         DF = pd.read_csv(os.path.join(self._MessagesPath, msgFileName), delimiter=",", header=None,)
@@ -451,6 +468,8 @@ class Statistics(object):
 
     
     # Fire Spread evolution plot (global sims)
+
+    @profile
     def GlobalFireSpreadEvo(self, CoordCells, onlyGraph=True, version=0):
         # V0 Frequency
         if self._GGraph is None:
@@ -551,13 +570,13 @@ class Statistics(object):
                 cax1 = divider.append_axes("right", size="5%", pad=0.15)
                 plt.colorbar(sm, cax=cax1)
                 
+            print('figsize')
+            plt.figure(1,figsize=(200, 200)) 
             plt.savefig(os.path.join(self._StatsFolder, "SpreadTree_FreqGraph_" + outname + ".png"), 
-                        dpi=200, figsize=(200, 200), 
-                        bbox_inches='tight', transparent=False)
+                        dpi=200, bbox_inches='tight', transparent=False)
             if self._pdfOutputs:
                 plt.savefig(os.path.join(self._StatsFolder, "SpreadTree_FreqGraph_" + outname + ".pdf"), 
-                            dpi=200, figsize=(200, 200), 
-                            bbox_inches='tight', transparent=False)
+                            dpi=200, bbox_inches='tight', transparent=False)
             plt.close("all")
 
     # Fire Spread evolution plots (per sim)
@@ -585,7 +604,7 @@ class Statistics(object):
         # We generate the plot
         if print_graph:
 
-            # plt.figure(figsize = (15, 9)) 
+            # plt.figure(1,figsize = (15, 9)) 
 
             # Font sizes
             plt.rcParams['font.size'] = 16
@@ -629,14 +648,13 @@ class Statistics(object):
             if os.path.isdir(PlotPath) is False:
                 os.makedirs(PlotPath)
             
+            plt.figure(1,figsize=(200, 200)) 
             plt.savefig(os.path.join(PlotPath, "PropagationTree" + str(nSim) +".png"), 
-                        dpi=200, figsize=(200, 200), edgecolor='b', 
-                        bbox_inches='tight', transparent=False)
+                        dpi=200, edgecolor='b', bbox_inches='tight', transparent=False)
             
             if self._pdfOutputs:
                 plt.savefig(os.path.join(PlotPath, "PropagationTree" + str(nSim) +".pdf"), 
-                            dpi=200, figsize=(200, 200), edgecolor='b', 
-                            bbox_inches='tight', transparent=False)
+                            dpi=200, edgecolor='b', bbox_inches='tight', transparent=False)
             
 
         # Hitting times and ROSs
@@ -664,6 +682,8 @@ class Statistics(object):
               
     
     # Fire Spread evolution plots (per sim, version 2)
+
+    @profile
     def SimFireSpreadEvoV2(self, nSim, CoordCells, Colors, H=None, version=0, onlyGraph=True):
         if H is None:
             msgFileName = "MessagesFile0" if (nSim < 10) else "MessagesFile"
@@ -692,7 +712,7 @@ class Statistics(object):
                                        node_shape='s',
                                        node_color = Colors)
 
-            # plt.figure(figsize = (15, 9)) 
+            # plt.figure(1,figsize = (15, 9)) 
 
             # Font sizes
             plt.rcParams['font.size'] = 16
@@ -771,14 +791,13 @@ class Statistics(object):
             divider = make_axes_locatable(ax)
             cax1 = divider.append_axes("right", size="5%", pad=0.05)
             plt.colorbar(sm, cax=cax1) 
+            plt.figure(1,figsize = (200, 200)) 
             plt.savefig(os.path.join(PlotPath, "FireSpreadTree" + str(nSim) + "_" + str(version) + ".png"),
-                        dpi=200,  figsize=(200, 200), 
-                        bbox_inches='tight', transparent=False)
+                        dpi=200, bbox_inches='tight', transparent=False)
             
             if self._pdfOutputs:
                 plt.savefig(os.path.join(PlotPath, "FireSpreadTree" + str(nSim) + "_" + str(version) + ".pdf"),
-                            dpi=200,  figsize=(200, 200), 
-                            bbox_inches='tight', transparent=False)
+                            dpi=200, bbox_inches='tight', transparent=False)
             plt.close("all")
         
     
@@ -835,6 +854,8 @@ class Statistics(object):
             
     
     # Plot full forest (all cells and colors)
+
+    @profile
     def ForestPlot(self, LookupTable, data, Path, namePlot="InitialForest"):
         # Colors dictionary (container)
         myColorsD = {}
@@ -870,7 +891,7 @@ class Statistics(object):
 
         # Plot
         # Figure size
-        plt.figure(figsize = (15, 9)) 
+        plt.figure(1,figsize = (15, 9)) 
 
         # Font sizes
         plt.rcParams['font.size'] = 16
@@ -952,6 +973,8 @@ class Statistics(object):
         
     
     # Merge the plots
+
+    @profile
     def mergePlot(self, multip=True):
         # Stats per simulation
         for i in tqdm(range(self._nSims)):
@@ -1081,6 +1104,8 @@ class Statistics(object):
                        delimiter=" ", fmt="%.3f")
 
     # Hourly stats (comparison of each hour evolution per fire)
+
+    @profile
     def HourlyStats(self):
         # If nSims = -1, read the output folder
         if self._nSims == -1:
