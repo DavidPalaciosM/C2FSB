@@ -1,4 +1,6 @@
+ipython
 pandas
+matplotlib
 seaborn
 imread
 tqdm

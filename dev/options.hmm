@@ -20,11 +20,12 @@ c2fSB options
 				constant, distribution, random, rows
 		--Weather-Period-Length
 			que pasa cuando no calza con el fire lenght?
-	fuels
+	fuels/treatments
 		✗ --HarvestedCells
 			HCells
+		tratamiento HCells
 	fire
-		--bbo
+		✗ --bbo
 			BBOFuels.csv
 		ROS
 			--ROS-Threshold
@@ -57,17 +58,19 @@ c2fSB options
 		--onlyProcessing
 			onlyProcessing : bool
 		--verbose ?
+		--sim-years
+			sim_years
 	results
-		✓ --no-output
+		✗ --no-output
 			--no-output : bool
 		GRIDS
 			--grids
-				ignitions : bool
-			--gridsStep
+				grids : bool
+			✗ --gridsStep
 				gridsStep
 					every n time
 					60?
-			--gridsFreq ?
+			✗ --gridsFreq ?
 				gridsFreq
 					every n episodes/sims
 		--spreadPlots
@@ -87,11 +90,9 @@ c2fSB options
 			fire?
 		--stats
 		--pdfOutputs
-		--verbose
+		✗ --verbose
 		--combine
 	✗ no
-		--sim-years
-			sim_years
 		--onlyProcessing
 			results?
 		--fdemand
@@ -127,3 +128,11 @@ c2fSB options
 			fire?
 		--correctedStats
 			only hourly?
+	ppta rodrigo
+		fire
+			ignition
+			fire
+		environment
+			weather+elevation
+			fuels
+			elevation
