@@ -1,6 +1,5 @@
-numpy
 pandas
-matplotlib==3.5.2
+matplotlib
 seaborn
 imread
 tqdm
@@ -9,3 +8,8 @@ networkx
 rasterio
 scipy
 deap
+wheel
+setuptools
+pip
+ipython
+memory_profiler

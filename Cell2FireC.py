@@ -16,12 +16,8 @@ from Cell2Fire.Stats import *
 from Cell2Fire.Heuristics import *
 from Cell2Fire.GeotiffsGenerator import InputGeotiff,OutputGeotiff
 
-# debug memory hungry
-from memory_profiler import profile
-
 class Cell2FireC:
     # Constructor and initial run
-    @profile
     def __init__(self, args):
         # Store arguments
         self.args = args
@@ -53,7 +49,6 @@ class Cell2FireC:
         
     
     # Run C++ Sim 
-    @profile
     def run(self):
         # Parse args for calling C++ via subprocess        
         execArray=[os.path.join(os.getcwd(),'Cell2FireC/Cell2Fire'), 
@@ -115,7 +110,6 @@ class Cell2FireC:
             
     
     # Run C++ Sim with heuristic treatment 
-    @profile
     def run_Heur(self, OutFolder, HarvestPlanFile):
         # Parse args for calling C++ via subprocess        
         execArray=[os.path.join(os.getcwd(),'Cell2FireC/Cell2Fire'), 
@@ -174,7 +168,6 @@ class Cell2FireC:
     '''
     Generate the Data.csv file for the C++ core
     '''
-    @profile
     def generateDataC(self):
         dataName = os.path.join(self.args.InFolder, "Data.csv")
         if os.path.isfile(dataName) is False:
@@ -187,7 +180,6 @@ class Cell2FireC:
     '''
     Data for stats/plots
     '''
-    @profile
     def getData(self):
         # Paths
         ForestFile = os.path.join(self.args.InFolder, "fuels.asc")
@@ -218,7 +210,6 @@ class Cell2FireC:
     '''
     Generate empty MessageFiles if needed
     '''
-    @profile
     def DummyMsg(self):
         # Messages path and CWD for returning
         MPath = os.path.join(self.args.OutFolder, "Messages")
@@ -243,7 +234,6 @@ class Cell2FireC:
     '''
     Generate empty MessageFiles if needed
     '''
-    @profile
     def DummyMsg_Heur(self, OutFolder):
         # Messages path and CWD for returning
         MPath = os.path.join(OutFolder, "Messages")
@@ -266,7 +256,6 @@ class Cell2FireC:
     '''
     Generate statistics from Grids
     '''
-    @profile
     def stats(self):
         # Get rows, cols 
         DFForest = pd.read_csv(os.path.join(self.args.InFolder, "fuels.asc"), 
@@ -380,7 +369,6 @@ class Cell2FireC:
     '''
     Generate statistics from Grids
     '''
-    @profile
     def stats_Heur(self, OutFolder, HCells=None):
         # Initialize the Stats object
         StatsPrinter = Statistics(OutFolder=OutFolder,
@@ -484,7 +472,6 @@ class Cell2FireC:
     '''
     Initialize heuristic object to estimate FPV or other metrics
     '''
-    @profile
     def heur(self, AvailCells=set(), BurntCells=set(), HarvestedCells=set()):
         # Seed
         npr.seed(self.args.seed)

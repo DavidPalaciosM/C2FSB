@@ -45,7 +45,6 @@ matplotlib.use('Agg')
 
 class Statistics(object):
     # Initializer
-    @profile
     def __init__(self,
                  OutFolder="",
                  StatsFolder="",
@@ -66,7 +65,7 @@ class Statistics(object):
                  pdfOutputs=False):
 
         # recicle just one figure
-        fig = plt.figure()
+        fig = plt.figure(1)
     
         # Containers
         self._OutFolder = OutFolder
@@ -104,7 +103,6 @@ class Statistics(object):
     ####################################
     # Plot style
 
-    @profile
     def plt_style(self):
         # Figure
         plt.figure(1,figsize = (15, 9)) 
@@ -127,7 +125,6 @@ class Statistics(object):
     
     # Boxplot function
 
-    @profile
     def BoxPlot(self, Data, xx="Hour", yy="Burned", xlab="Hours", ylab="# Burned Cells", 
                 pal="Reds", title="Burned Cells Evolution", Path=None, namePlot="BoxPlot",
                 swarm=True):
@@ -201,7 +198,6 @@ class Statistics(object):
     
     # Histograms
 
-    @profile
     def plotHistogram(self, df, NonBurned=False, xx="Hour", xmax=6, KDE=True, title="Histogram: Burned Cells",
                       Path=None, namePlot="Histogram"):
         
@@ -315,7 +311,6 @@ class Statistics(object):
     
     # ROS Heatmap
 
-    @profile
     def ROSHeatmap(self, ROSM, Path=None, nscen=1, sq=True, namePlot="ROS_HeatMap",
                    Title=None, cbarF=True, ticks="auto", transparent=False, 
                    annot=False, lw=0.01, vmin=0, vmax=None):
@@ -403,7 +398,6 @@ class Statistics(object):
     
     # ROS Matrix
 
-    @profile
     def ROSMatrix_AVG(self, nSim): 
         msgFileName = "MessagesFile0" if (nSim < 10) else "MessagesFile"
         DF = pd.read_csv(os.path.join(self._MessagesPath, msgFileName), delimiter=",", header=None,)
@@ -469,7 +463,6 @@ class Statistics(object):
     
     # Fire Spread evolution plot (global sims)
 
-    @profile
     def GlobalFireSpreadEvo(self, CoordCells, onlyGraph=True, version=0):
         # V0 Frequency
         if self._GGraph is None:
@@ -683,7 +676,6 @@ class Statistics(object):
     
     # Fire Spread evolution plots (per sim, version 2)
 
-    @profile
     def SimFireSpreadEvoV2(self, nSim, CoordCells, Colors, H=None, version=0, onlyGraph=True):
         if H is None:
             msgFileName = "MessagesFile0" if (nSim < 10) else "MessagesFile"
@@ -855,7 +847,6 @@ class Statistics(object):
     
     # Plot full forest (all cells and colors)
 
-    @profile
     def ForestPlot(self, LookupTable, data, Path, namePlot="InitialForest"):
         # Colors dictionary (container)
         myColorsD = {}
@@ -974,7 +965,6 @@ class Statistics(object):
     
     # Merge the plots
 
-    @profile
     def mergePlot(self, multip=True):
         # Stats per simulation
         for i in tqdm(range(self._nSims)):
@@ -1105,7 +1095,6 @@ class Statistics(object):
 
     # Hourly stats (comparison of each hour evolution per fire)
 
-    @profile
     def HourlyStats(self):
         # If nSims = -1, read the output folder
         if self._nSims == -1:
