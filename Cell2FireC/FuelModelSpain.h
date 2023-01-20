@@ -18,7 +18,7 @@
 typedef struct
    { char fueltype[4];
      float ws, saz, cur, ps, cbh, ccf, cbd, elev ;
-     int waz, scen, nftype;
+     int waz, scen, nftype,fmc;
      float factor_cbd, factor_ccf, factor_ros10, factor_actv ;
 	 bool cros, verbose;
    } inputs;

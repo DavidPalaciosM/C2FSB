@@ -160,6 +160,7 @@ void parseArgs(int argc, char* argv[], arguments* args_ptr)
 	int dseed = 123;
 	int diradius = 0;
 	int dnthreads = 1;
+	int dfmc=80;
 	float dROS_Threshold= 0.1;
 	float dHFI_Threshold= 0.1;
 	float dCROS_Threshold= 0.5;
@@ -228,6 +229,15 @@ void parseArgs(int argc, char* argv[], arguments* args_ptr)
 		args_ptr->IgnitionRadius = std::stoi (input_igrad ,&sz); 
     } 
 	else args_ptr->IgnitionRadius =  diradius;
+	
+
+	//--fmc
+	char * input_fmc = getCmdOption(argv, argv + argc, "--fmc");
+    if (input_fmc){
+        printf("fmc: %s \n", input_fmc);
+		args_ptr->fmc = std::stoi (input_fmc ,&sz);  
+    }
+	else args_ptr->fmc = dfmc; 
 	
 	
 	//--ROS-Threshold

@@ -104,7 +104,7 @@ def ForestGrid(filename, Dictionary):
 # Reads the ASCII files with forest data elevation, saz, slope, and (future) curing degree and returns arrays
 # with values
 def DataGrids(InFolder, NCells):
-    filenames = ["elevation.asc", "saz.asc", "slope.asc", "cur.asc", "cbd.asc", "cbh.asc", "ccf.asc","py.asc"]
+    filenames = ["elevation.asc", "saz.asc", "slope.asc", "cur.asc", "cbd.asc", "cbh.asc", "ccf.asc","py.asc","fmc.asc"]
     Elevation =  np.full(NCells, np.nan)
     SAZ = np.full(NCells, np.nan)
     PS = np.full(NCells, np.nan)
@@ -113,6 +113,7 @@ def DataGrids(InFolder, NCells):
     CBH = np.full(NCells, np.nan)
     CCF = np.full(NCells, np.nan)
     PY = np.full(NCells, np.nan)
+    FMC=np.full(NCells,np.nan)
     
     for name in filenames:
         ff = os.path.join(InFolder, name)
@@ -164,16 +165,19 @@ def DataGrids(InFolder, NCells):
                         if name == "py.asc":
                             PY[aux] = float(c)
                             aux += 1
+                        if name == "fmc.asc":
+                            FMC[aux] = float(c)
+                            aux += 1
 
         else:
             print("   No", name, "file, filling with NaN")
             
-    return Elevation, SAZ, PS, Curing, CBD, CBH, CCF,PY
+    return Elevation, SAZ, PS, Curing, CBD, CBH, CCF,PY,FMC
 
 # Generates the Data.dat file (csv) from all data files (ready for the simulator)
-def GenerateDat(GFuelType, GFuelTypeN, Elevation, PS, SAZ, Curing, CBD, CBH, CCF,PY, InFolder):
+def GenerateDat(GFuelType, GFuelTypeN, Elevation, PS, SAZ, Curing, CBD, CBH, CCF,PY,FMC, InFolder):
     # DF columns
-    Columns = ["fueltype", "lat", "lon", "elev", "ws", "waz", "ps", "saz", "cur", "cbd", "cbh", "ccf","ftypeN","py"]
+    Columns = ["fueltype", "lat", "lon", "elev", "ws", "waz", "ps", "saz", "cur", "cbd", "cbh", "ccf","ftypeN","fmc","py"]
     
     # Dataframe
     DF = pd.DataFrame(columns=Columns)
@@ -185,6 +189,7 @@ def GenerateDat(GFuelType, GFuelTypeN, Elevation, PS, SAZ, Curing, CBD, CBH, CCF
     DF["cbh"] = CBH
     DF["ccf"] = CCF
     DF["py"] = PY
+    DF["fmc"] = FMC
     DF["lat"] = np.zeros(len(GFuelType)) + 51.621244
     DF["lon"] = np.zeros(len(GFuelType)).astype(int) - 115.608378
     
@@ -208,5 +213,5 @@ def GenDataFile(InFolder):
     GFuelTypeN, GFuelType, Rows, Cols, CellSide = ForestGrid(FGrid, FBPDict)
     
     NCells = len(GFuelType)
-    Elevation, SAZ, PS, Curing, CBD, CBH, CCF,PY = DataGrids(InFolder, NCells)
-    GenerateDat(GFuelType, GFuelTypeN, Elevation, PS, SAZ, Curing, CBD, CBH, CCF,PY, InFolder)
+    Elevation, SAZ, PS, Curing, CBD, CBH, CCF,PY,FMC = DataGrids(InFolder, NCells)
+    GenerateDat(GFuelType, GFuelTypeN, Elevation, PS, SAZ, Curing, CBD, CBH, CCF,PY,FMC, InFolder)
