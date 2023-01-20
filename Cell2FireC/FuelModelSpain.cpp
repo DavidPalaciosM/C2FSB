@@ -2133,20 +2133,9 @@ float byram_intensity(main_outs* at, fuel_coefs* ptr) {
 	return ib;
 }
 
-int fmc_scen(int scenario) {
+int fmc_scen(inputs* data) {
 	int fmc;
-	if (scenario == 1) {
-		fmc = 60;
-	}
-	if (scenario == 2) {
-		fmc = 60;
-	}
-	if (scenario == 3) {
-		fmc = 120;
-	}
-	if (scenario == 4) {
-		fmc = 150;
-	}
+	fmc= data->fmc;
 	return fmc;
 
 }
@@ -2159,7 +2148,7 @@ bool fire_type(inputs* data, main_outs* at)
 
 	intensity = at->byram;
 	cbh = data->cbh;
-	fmc = fmc_scen(data->scen);
+	fmc = fmc_scen(data);
 	critical_intensity = pow((0.01 * cbh * (460 + 25.9 * fmc)), 1.5);
 
 	if ((intensity > critical_intensity) && cbh != 0) crownFire = true;
