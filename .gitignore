@@ -39,6 +39,7 @@
 .vscode
 Cell2fire/__pycache__
 Cell2fireC/FuelModelSpain_Rothermel.cpp
+Cell2FireC/Cell2Fire
 
 # python
 .ipynb_checkpoints/
