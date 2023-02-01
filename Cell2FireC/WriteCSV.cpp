@@ -14,6 +14,9 @@
 #include <set>
 #include <sys/types.h>
 #include <sys/stat.h>
+#include <iostream>
+#include <Windows.h>
+#include <direct.h>
 
  
 /*
@@ -482,7 +485,7 @@ void CSVWriter::MakeDir(std::string pathPlot) {
 	//std::string folder2 = aux.substr(9, sizeof(aux));
 	//const char * folder = folder2.c_str();
 	//struct stat info;
-	system(Dir);
+	int ret = _mkdir(Dir);
 
 //	if (stat(folder, &info) != 0) {
 	//	system(Dir);
