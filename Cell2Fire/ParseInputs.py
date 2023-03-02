@@ -65,7 +65,12 @@ def ParseInputs():
                         help="foliar moisture content for every fuel)",
                         dest="fmc",
                         type=int,
-                        default=100) 
+                        default=100)
+    parser.add_argument("--scenario",
+                        help="surface moisture content scenario)",
+                        dest="scenario",
+                        type=int,
+                        default=3)
     parser.add_argument("--IgnitionRad",
                         help="Adjacents degree for defining an ignition area (around ignition point)",
                         dest="IgRadius",
