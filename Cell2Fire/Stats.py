@@ -977,6 +977,44 @@ class Statistics(object):
                 for job in jobs:
                     job.join()            
     
+    def ReadLogfile(folder,word_to_be_found):
+        a_file = open(os.path.join(folder,"Logfile.txt"), "r")
+        list_of_values = []
+        simulations=[]
+        for line in a_file:
+            stripped_line = line.strip()
+            line_list = stripped_line.split()
+            if word_to_be_found in line_list:
+                word_index=line_list.index(word_to_be_found)
+                simulation=(line_list[word_index+1])[:-1]
+                value=line_list[word_index+2]#valor subsiguiente a sim
+                list_of_values.append(int(value))
+                simulations.append(int(simulation))
+        a_file.close()
+        return list_of_values,simulations
+    
+    def ObtainIgnitionPairs(cols,ignitions):
+        rows=[]
+        cols=[]
+        for ignition in ignitions:
+            row=int(ignition/cols)+1
+            col=ignition%cols
+            rows.append(row)
+            cols.append(col)
+        return rows,cols
+    
+    #generates a txt representing the ignition in each simulation. the format is: simulation, ordinal point, row, column
+    def OutfileIgnitions(self):
+        list_of_values,simulations=ReadLogfile(self._OutFolder, "sim")
+        rows,cols=ObtainIgnitionPairs(self._Cols, list_of_values)
+        dict_df={"Simulation": simulations,"Cell":list_of_values ,"Row": rows,"Col":cols}
+        df=pd.DataFrame(dict_df)
+        df.sort_values("Simulation",inplace=True)
+        np.savetxt(os.path.join(self._OutFolder,'Ignition_Coordinates.txt'), df.values, fmt='%d')
+        #df.to_csv(os.path.join(results_folder,"Ignition_Coordinates.csv"),index=False)
+
+    
+    
     # General Stats (end of the fire stats per scenario) 
     def GeneralStats(self):
         # If nSims = -1, read the output folder
@@ -984,7 +1022,7 @@ class Statistics(object):
             # Read folders with Grids (array with name of files) 
             Grids = glob.glob(self._OutFolder + 'Grids/')
             self._nSims = len(Grids)
-
+        self.OutfileIgnitions()
         # Grids files (final scars)
         a = 0
         b = []
