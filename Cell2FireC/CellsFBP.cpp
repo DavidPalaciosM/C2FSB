@@ -320,7 +320,7 @@ std::vector<int> CellsFBP::manageFire(int period, std::unordered_set<int> & Avai
 	// Populate Inputs 
 	df_ptr[this->realId-1].waz = wdf_ptr->waz;
 	df_ptr[this->realId-1].ws = wdf_ptr->ws;
-	df_ptr[this->realId-1].scen = wdf_ptr->scenario;
+	df_ptr[this->realId-1].scen = args->scenario;
 	df_ptr[this->realId-1].factor_cbd = args->CBDFactor;   
 	df_ptr[this->realId-1].factor_ccf = args->CCFFactor;
 	df_ptr[this->realId-1].factor_ros10 = args->ROS10Factor;
@@ -561,7 +561,7 @@ std::vector<int> CellsFBP::manageFireBBO(int period, std::unordered_set<int> & A
 	// Populate inputs 
 	df_ptr->waz = wdf_ptr->waz;
 	df_ptr->ws = wdf_ptr->ws;
-	df_ptr->scen = wdf_ptr->scenario;
+	df_ptr->scen = args->scenario;
 	df_ptr->factor_cbd = args->CBDFactor;   
 	df_ptr->factor_ccf = args->CCFFactor;
 	df_ptr->factor_ros10 = args->ROS10Factor;
