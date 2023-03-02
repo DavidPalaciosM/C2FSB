@@ -497,7 +497,7 @@ void CSVReader::printDF(inputs df){
 
 
 void CSVReader::printWeatherDF(weatherDF wdf){
-	std::cout << wdf.scenario; std::cout << " " << wdf.datetime; 
+	std::cout << " " << wdf.datetime; 
 	std::cout << " " << wdf.ws; std::cout << " " << wdf.waz; 
 }
 
