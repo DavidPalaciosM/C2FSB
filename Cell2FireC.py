@@ -83,6 +83,7 @@ class Cell2FireC:
         
         #Geotiffs
         if self.args.Geotiffs:
+            print("Generating input Geotiff...", flush=True)
             InputGeotiff(self.args.InFolder)
             
         # Output log
@@ -94,15 +95,17 @@ class Cell2FireC:
             LogName = os.path.join(self.args.InFolder, "LogFile.txt")   
          
         # Perform the call
+        print("Calling Cell2Fire simulator...", flush=True)
         with open(LogName, 'w') as output:
             proc = subprocess.Popen(execArray, stdout=output)
             proc.communicate()
         proc.wait()
         
         # End of the replications
-        print("End of Cell2FireC execution...")
+        print("End of Cell2Fire execution...")
         
         if self.args.Geotiffs:
+             print("Generating output Geotiff...", flush=True)
             OutputGeotiff(self.args.InFolder,self.args.OutFolder,self.args.nsims)
         #Geotiffs
         #if self.args.geotiffs is not None:
@@ -171,7 +174,7 @@ class Cell2FireC:
     def generateDataC(self):
         dataName = os.path.join(self.args.InFolder, "Data.csv")
         if os.path.isfile(dataName) is False:
-            print("Generating Data.csv File...")
+            print("Generating Data.csv File...",flush=True)
             DataGenerator.GenDataFile(self.args.InFolder)
             
             
@@ -281,11 +284,11 @@ class Cell2FireC:
 
         # Hourly Stats
         if self.args.grids:
-            print("Hourly stats...")
+            print("Hourly stats...",flush=True)
             StatsPrinter.HourlyStats()
 
         # General Stats
-        print("General stats...")
+        print("General stats...",flush=True)
         StatsPrinter.GeneralStats()
         
         # Dummy msg if needed
@@ -293,15 +296,15 @@ class Cell2FireC:
         
         # Get Coordinates and colors
         if self.args.spreadPlots or self.args.plots or self.args.allPlots:
-            print("Reading data...")
+            print("Reading data...",flush=True)
             self.getData()  
-            print("Dummy if needed...")
+            print("Dummy if needed...",flush=True)
             self.DummyMsg()
         
         # Spread plots
         if self.args.spreadPlots or self.args.allPlots:
             # Fire Spread Graphs
-            print("Generating global fire spread evolution...")
+            print("Generating global fire spread evolution...",flush=True)
             totalPlots = 1
             
             # If multiple sims, plots including freq are useful
@@ -314,7 +317,7 @@ class Cell2FireC:
 
             # Fire Spread Graphs (individual)
             if self.args.grids:
-                print("Generating individual Fire Spread plots...")
+                print("Generating individual Fire Spread plots...",flush=True)
                 for n in tqdm(range(1, self.args.nsims + 1)):
                     StatsPrinter.SimFireSpreadEvo(n, self._CoordCells, 
                                                   self._Colors, 
@@ -325,7 +328,7 @@ class Cell2FireC:
                     
             
             # Generate Initial Forest
-            print("Generating initial forest plot...")
+            print("Generating initial forest plot...",flush=True)
             FBPlookup = os.path.join(self.args.InFolder, "spain_lookup_table.csv")
             if self.args.HCells is not None: 
                 HCarray = np.loadtxt(self.args.HCells, skiprows=1, delimiter=",")[1:].astype(np.int)
@@ -345,15 +348,15 @@ class Cell2FireC:
         if self.args.plots or self.args.allPlots:            
             if self.args.grids:
                 # Plotting
-                print("Generating fire evolution plots...")
+                print("Generating fire evolution plots...",flush=True)
                 StatsPrinter.plotEvo()
                 
                 # Combine them with background
                 if self.args.combine:
-                    print("Combining Fires with background (initial forest)...")
+                    print("Combining Fires with background (initial forest)...",flush=True)
                     StatsPrinter.mergePlot()
 
-            print("Generating detailed individual propagation trees...")
+            print("Generating detailed individual propagation trees...",flush=True)
             for n in tqdm(range(1, self.args.nsims + 1)):
                 for v in range(1,4):
                     StatsPrinter.SimFireSpreadEvoV2(n, self._CoordCells,
@@ -391,24 +394,24 @@ class Cell2FireC:
 
         # Hourly Stats
         if self.args.grids:
-            print("Hourly stats...")
+            print("Hourly stats...",flush=True)
             StatsPrinter.HourlyStats()
 
         # General Stats
-        print("General stats...")
+        print("General stats...",flush=True)
         StatsPrinter.GeneralStats()
         
         # Get Coordinates and colors
         if self.args.spreadPlots or self.args.plots or self.args.allPlots:
-            print("Reading data...")
+            print("Reading data...",flush=True)
             self.getData()  
-            print("Dummy if needed...")
+            print("Dummy if needed...",flush=True)
             self.DummyMsg_Heur(OutFolder)
         
         # Spread plots
         if self.args.spreadPlots or self.args.allPlots:
             # Fire Spread Graphs
-            print("Generating global fire spread evolution...")
+            print("Generating global fire spread evolution...",flush=True)
             totalPlots = 1
             
             # If multiple sims, plots including freq are useful
@@ -421,7 +424,7 @@ class Cell2FireC:
 
             # Fire Spread Graphs (individual)
             if self.args.grids:
-                print("Generating individual Fire Spread plots...")
+                print("Generating individual Fire Spread plots...",flush=True)
                 for n in tqdm(range(1, self.args.nsims + 1)):
                     StatsPrinter.SimFireSpreadEvo(n, self._CoordCells, 
                                                   self._Colors, 
@@ -432,7 +435,7 @@ class Cell2FireC:
                     
             
             # Generate Initial Forest
-            print("Generating initial forest plot...")
+            print("Generating initial forest plot...",flush=True)
             FBPlookup = os.path.join(self.args.InFolder, "spain_lookup_table.csv")
             if HCells is not None: 
                 HCarray = np.loadtxt(HCells, skiprows=1, delimiter=",")[1:].astype(np.int)
@@ -449,15 +452,15 @@ class Cell2FireC:
         if self.args.plots or self.args.allPlots:            
             if self.args.grids:
                 # Plotting
-                print("Generating fire evolution plots...")
+                print("Generating fire evolution plots...",flush=True)
                 StatsPrinter.plotEvo()
                 
                 # Combine them with background
                 if self.args.combine:
-                    print("Combining Fires with background (initial forest)...")
+                    print("Combining Fires with background (initial forest)...",flush=True)
                     StatsPrinter.mergePlot()
 
-            print("Generating detailed individual propagation trees...")
+            print("Generating detailed individual propagation trees...",flush=True)
             for n in tqdm(range(1, self.args.nsims + 1)):
                 for v in range(1,4):
                     StatsPrinter.SimFireSpreadEvoV2(n, self._CoordCells,
