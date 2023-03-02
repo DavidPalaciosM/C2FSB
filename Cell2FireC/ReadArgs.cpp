@@ -161,6 +161,7 @@ void parseArgs(int argc, char* argv[], arguments* args_ptr)
 	int diradius = 0;
 	int dnthreads = 1;
 	int dfmc=80;
+	int dscen=3;
 	float dROS_Threshold= 0.1;
 	float dHFI_Threshold= 0.1;
 	float dCROS_Threshold= 0.5;
@@ -238,6 +239,14 @@ void parseArgs(int argc, char* argv[], arguments* args_ptr)
 		args_ptr->fmc = std::stoi (input_fmc ,&sz);  
     }
 	else args_ptr->fmc = dfmc; 
+	
+		//--fmc
+	char * input_scenario = getCmdOption(argv, argv + argc, "--scenario");
+    if (input_scenario){
+        printf("scenario: %s \n", input_scenario);
+		args_ptr->scenario = std::stoi (input_scenario ,&sz);  
+    }
+	else args_ptr->scenario = dscen; 
 	
 	
 	//--ROS-Threshold
