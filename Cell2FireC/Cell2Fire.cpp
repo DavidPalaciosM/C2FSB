@@ -499,6 +499,13 @@ void Cell2Fire::reset(int rnumber, double rnumber2, int simExt = 1){
 		CSVFolder.MakeDir(this->messagesFolder);
 		this->messagesFolder = this->args.OutFolder + "/Intensity/";
 	}
+	//Byram Intensity Folder
+	if (this->args.OutFireBehavior) {
+		CSVWriter CSVFolder("", "");
+		this->messagesFolder = "mkdir -p " + this->args.OutFolder + "/FlameLength/";
+		CSVFolder.MakeDir(this->messagesFolder);
+		this->messagesFolder = this->args.OutFolder + "/FlameLength/";
+	}
 	//Crown Folder
 	if (this->args.OutFireBehavior && this->args.AllowCROS) {
 		CSVWriter CSVFolder("", "");
