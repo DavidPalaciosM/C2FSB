@@ -486,28 +486,28 @@ void Cell2Fire::reset(int rnumber, double rnumber2, int simExt = 1){
 		this->messagesFolder = this->args.OutFolder + "/Messages/";
 	}
 	//ROS Folder
-	if (this->args.OutFireBehavior) {
+	if (this->args.OutRos) {
 		CSVWriter CSVFolder("", "");
 		this->messagesFolder = "mkdir -p " + this->args.OutFolder + "/RateOfSpread/";
 		CSVFolder.MakeDir(this->messagesFolder);
 		this->messagesFolder = this->args.OutFolder + "/RateOfSpread/";
 	}
 	//Byram Intensity Folder
-	if (this->args.OutFireBehavior) {
+	if (this->args.OutIntensity) {
 		CSVWriter CSVFolder("", "");
 		this->messagesFolder = "mkdir -p " + this->args.OutFolder + "/Intensity/";
 		CSVFolder.MakeDir(this->messagesFolder);
 		this->messagesFolder = this->args.OutFolder + "/Intensity/";
 	}
 	//Byram Intensity Folder
-	if (this->args.OutFireBehavior) {
+	if (this->args.OutFl) {
 		CSVWriter CSVFolder("", "");
 		this->messagesFolder = "mkdir -p " + this->args.OutFolder + "/FlameLength/";
 		CSVFolder.MakeDir(this->messagesFolder);
 		this->messagesFolder = this->args.OutFolder + "/FlameLength/";
 	}
 	//Crown Folder
-	if (this->args.OutFireBehavior && this->args.AllowCROS) {
+	if (this->args.OutCrown && this->args.AllowCROS) {
 		CSVWriter CSVFolder("", "");
 		this->messagesFolder = "mkdir -p " + this->args.OutFolder + "/CrownFire/";
 		CSVFolder.MakeDir(this->messagesFolder);
@@ -1321,7 +1321,7 @@ void Cell2Fire::Results(){
 
 
 	// RateOfSpread
-	if (this->args.OutFireBehavior) {
+	if (this->args.OutRos) {
 		this->rosFolder = this->args.OutFolder + "/RateOfSpread/";
 		std::string rosName;
 		std::vector<int> statusCells2(this->nCells, 0); //(long int, int);
@@ -1353,7 +1353,7 @@ void Cell2Fire::Results(){
 	}
 
 	// Intensity
-	if (this->args.OutFireBehavior) {
+	if (this->args.OutIntensity) {
 		this->rosFolder = this->args.OutFolder + "/Intensity/";
 		std::string rosName;
 		std::vector<int> statusCells2(this->nCells, 0); //(long int, int);
@@ -1385,7 +1385,7 @@ void Cell2Fire::Results(){
 	}
 
 		// Intensity
-	if (this->args.OutFireBehavior) {
+	if (this->args.OutFl) {
 		this->rosFolder = this->args.OutFolder + "/FlameLength/";
 		std::string rosName;
 		std::vector<int> statusCells2(this->nCells, 0); //(long int, int);
@@ -1418,7 +1418,7 @@ void Cell2Fire::Results(){
 
 
 	// Crown
-	if ((this->args.OutFireBehavior) && (this->args.AllowCROS)) {
+	if ((this->args.OutCrown) && (this->args.AllowCROS)) {
 		this->rosFolder = this->args.OutFolder + "/CrownFire/";
 		std::string rosName;
 		std::vector<int> statusCells2(this->nCells, 0); //(long int, int);

@@ -232,11 +232,26 @@ def ParseInputs():
                         dest="OutMessages",
                         default=False,
                         action='store_true')
-    parser.add_argument("--out-behavior",
-                        help="Generates ASCII files with hit ROS, Byram Intensity and Boolean for Crown Fire if correspondes",
-                        dest="OutBehavior",
+    parser.add_argument("--out-fl",
+                        help="Generates ASCII files with Flame Length",
+                        dest="OutFl",
                         default=False,
                         action='store_true')
+    parser.add_argument("--out-intensity",
+                        help="Generates ASCII files with Byram Intensity",
+                        dest="OutIntensity",
+                        default=False,
+                        action='store_true')
+    parser.add_argument("--out-ros",
+                        help="Generates ASCII files with hit ROS",
+                        dest="OutRos",
+                        default=False,
+                        action='store_true')
+    parser.add_argument("--out-crown",
+                        help="Generates ASCII files with Boolean for Crown Fire if correspondes",
+                        dest="OutCrown",
+                        default=False,
+                        action='store_true')                                                                        
     parser.add_argument("--Prometheus-tuned",
                         help="Activates the predefined tuning parameters based on Prometheus",
                         dest="PromTuning",
