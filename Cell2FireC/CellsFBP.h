@@ -22,16 +22,16 @@ class CellsFBP {
         // immutable
         int id;
         int fType;
-		int realId;
-		double _ctr2ctrdist;							
-		double area;
+	int realId;
+	double _ctr2ctrdist;							
+	double area;
         double perimeter;
 		
         std::string fType2;
         std::vector<int> coord; //maybe change this into a tuple or class	CP: 2-tuple (int)
-		std::unordered_map<std::string, int> adjacents; // CP: dictionary {string: [int array]}
+	std::unordered_map<std::string, int> adjacents; // CP: dictionary {string: [int array]}
 		
-		string FTypeD[3];
+	string FTypeD[3];
         string StatusD[5];
 		
 		// mutable
@@ -44,7 +44,7 @@ class CellsFBP {
         int tYears;	
 		
         std::unordered_map<int, std::vector<int>> gMsgList; // {40 -> [1, 2, 3] }
-		std::unordered_map<int, std::vector<int>> gMsgListSeason;
+	std::unordered_map<int, std::vector<int>> gMsgListSeason;
         std::unordered_map<int, double> fireProgress;	// CP: dictionary {int: double}
         std::unordered_map<int, double> angleDict;				// CP: dictionary {int: double}
         std::unordered_map<int, double> ROSAngleDir;       // CP: dictionary {int: double|None}   Instead of None we can use a determined number like -9999 = None  TODO: maybe int : double
@@ -59,24 +59,23 @@ class CellsFBP {
 					 int _status, std::unordered_map<std::string, int> & _adjacents, 
 					 int _realId);
         
-		void initializeFireFields(std::vector<std::vector<int>> & coordCells, std::unordered_set<int> & availSet); // TODO: need TYPE
-       
-	    void ros_distr_old(double thetafire, double forward, double flank, double back);
-		double rhoTheta(double theta, double a, double b);
-		void ros_distr(double thetafire, double forward, double flank, double back, double EFactor);
-		void ros_distr_V2(double thetafire, double a, double b, double c, double EFactor);
+	void initializeFireFields(std::vector<std::vector<int>> & coordCells, std::unordered_set<int> & availSet); // TODO: need TYPE
+        void ros_distr_old(double thetafire, double forward, double flank, double back);
+	double rhoTheta(double theta, double a, double b);
+	void ros_distr(double thetafire, double forward, double flank, double back, double EFactor);
+	void ros_distr_V2(double thetafire, double a, double b, double c, double EFactor);
 		
         std::vector<int> manageFire(int period, std::unordered_set<int> & AvailSet,      
                                                           inputs df[], fuel_coefs * coef, 
-														  std::vector<std::vector<int>> & coordCells, std::unordered_map<int, CellsFBP> & Cells_Obj, 
-														  arguments * args, weatherDF * wdf_ptr, std::vector<double> * FSCell, std::vector<float> * crownMetrics,
-														  bool & activeCrown,double randomROS,std::vector<int> & crownState, std::vector<float> & crownFraction, std::vector<float> & Intensities, std::vector<float> & RateOfSpreads);
+							  std::vector<std::vector<int>> & coordCells, std::unordered_map<int, CellsFBP> & Cells_Obj, 
+							  arguments * args, weatherDF * wdf_ptr, std::vector<double> * FSCell, std::vector<float> * crownMetrics,
+							  bool & activeCrown,double randomROS,std::vector<int> & crownState, std::vector<float> & crownFraction, std::vector<float> & Intensities, std::vector<float> & RateOfSpreads,  std::vector<float> & FlameLengths);
 		
 		std::vector<int> manageFireBBO(int period, std::unordered_set<int> & AvailSet,      
-															inputs * df_ptr, fuel_coefs * coef, 
-															std::vector<std::vector<int>> & coordCells, std::unordered_map<int, CellsFBP> & Cells_Obj, 
-															arguments * args, weatherDF * wdf_ptr, std::vector<double> * FSCell, std::vector<float> * crownMetrics,
-															bool & activeCrown,double randomROS, std::vector<float> & EllipseFactors,std::vector<int> & crownState, std::vector<float> & crownFraction, std::vector<float> & Intensities, std::vector<float> & RateOfSpreads);
+						inputs * df_ptr, fuel_coefs * coef, 
+						std::vector<std::vector<int>> & coordCells, std::unordered_map<int, CellsFBP> & Cells_Obj, 
+						arguments * args, weatherDF * wdf_ptr, std::vector<double> * FSCell, std::vector<float> * crownMetrics,
+						bool & activeCrown,double randomROS, std::vector<float> & EllipseFactors,std::vector<int> & crownState, std::vector<float> & crownFraction, std::vector<float> & Intensities, std::vector<float> & RateOfSpreads,  std::vector<float> & FlameLengths);
 		
 		bool get_burned(int period, int season, int NMsg, inputs df[],  fuel_coefs * coef, arguments * args, weatherDF * wdf_ptr,bool & activeCrown) ;
 								
