@@ -486,21 +486,28 @@ void Cell2Fire::reset(int rnumber, double rnumber2, int simExt = 1){
 		this->messagesFolder = this->args.OutFolder + "/Messages/";
 	}
 	//ROS Folder
-	if (this->args.OutFireBehavior) {
+	if (this->args.OutRos) {
 		CSVWriter CSVFolder("", "");
 		this->messagesFolder = "mkdir -p " + this->args.OutFolder + "/RateOfSpread/";
 		CSVFolder.MakeDir(this->messagesFolder);
 		this->messagesFolder = this->args.OutFolder + "/RateOfSpread/";
 	}
 	//Byram Intensity Folder
-	if (this->args.OutFireBehavior) {
+	if (this->args.OutIntensity) {
 		CSVWriter CSVFolder("", "");
 		this->messagesFolder = "mkdir -p " + this->args.OutFolder + "/Intensity/";
 		CSVFolder.MakeDir(this->messagesFolder);
 		this->messagesFolder = this->args.OutFolder + "/Intensity/";
 	}
+	//Byram Intensity Folder
+	if (this->args.OutFl) {
+		CSVWriter CSVFolder("", "");
+		this->messagesFolder = "mkdir -p " + this->args.OutFolder + "/FlameLength/";
+		CSVFolder.MakeDir(this->messagesFolder);
+		this->messagesFolder = this->args.OutFolder + "/FlameLength/";
+	}
 	//Crown Folder
-	if (this->args.OutFireBehavior && this->args.AllowCROS) {
+	if (this->args.OutCrown && this->args.AllowCROS) {
 		CSVWriter CSVFolder("", "");
 		this->messagesFolder = "mkdir -p " + this->args.OutFolder + "/CrownFire/";
 		CSVFolder.MakeDir(this->messagesFolder);
@@ -1314,7 +1321,7 @@ void Cell2Fire::Results(){
 
 
 	// RateOfSpread
-	if (this->args.OutFireBehavior) {
+	if (this->args.OutRos) {
 		this->rosFolder = this->args.OutFolder + "/RateOfSpread/";
 		std::string rosName;
 		std::vector<int> statusCells2(this->nCells, 0); //(long int, int);
@@ -1346,7 +1353,7 @@ void Cell2Fire::Results(){
 	}
 
 	// Intensity
-	if (this->args.OutFireBehavior) {
+	if (this->args.OutIntensity) {
 		this->rosFolder = this->args.OutFolder + "/Intensity/";
 		std::string rosName;
 		std::vector<int> statusCells2(this->nCells, 0); //(long int, int);
@@ -1377,9 +1384,41 @@ void Cell2Fire::Results(){
 		CSVPloter.printIntensityAscii(this->rows, this->cols, this->xllcorner, this->yllcorner, this->cellSide, this->crownMetrics, statusCells2);
 	}
 
+		// Intensity
+	if (this->args.OutFl) {
+		this->rosFolder = this->args.OutFolder + "/FlameLength/";
+		std::string rosName;
+		std::vector<int> statusCells2(this->nCells, 0); //(long int, int);
+
+		// Update status 
+		for (auto& bc : this->burningCells) {
+			statusCells2[bc - 1] = 1;
+		}
+		for (auto& ac : this->burntCells) {
+			statusCells2[ac - 1] = 1;
+		}
+		for (auto& hc : this->harvestCells) {
+			statusCells2[hc - 1] = -1;
+		}
+
+		if (this->sim < 10) {
+			rosName = this->rosFolder + "FL0" + std::to_string(this->sim) + ".asc";
+		}
+
+		else {
+			rosName = this->rosFolder + "FL" + std::to_string(this->sim) + ".asc";
+		}
+
+		if (this->args.verbose) {
+			std::cout << "We are generating the Flame Lenght to a asc file " << rosName << std::endl;
+		}
+		CSVWriter CSVPloter(rosName, " ");
+		CSVPloter.printFLAscii(this->rows, this->cols, this->xllcorner, this->yllcorner, this->cellSide, this->crownMetrics, statusCells2);
+	}
+
 
 	// Crown
-	if ((this->args.OutFireBehavior) && (this->args.AllowCROS)) {
+	if ((this->args.OutCrown) && (this->args.AllowCROS)) {
 		this->rosFolder = this->args.OutFolder + "/CrownFire/";
 		std::string rosName;
 		std::vector<int> statusCells2(this->nCells, 0); //(long int, int);

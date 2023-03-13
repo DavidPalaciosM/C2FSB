@@ -320,7 +320,7 @@ std::vector<int> CellsFBP::manageFire(int period, std::unordered_set<int> & Avai
 	// Populate Inputs 
 	df_ptr[this->realId-1].waz = wdf_ptr->waz;
 	df_ptr[this->realId-1].ws = wdf_ptr->ws;
-	df_ptr[this->realId-1].scen = wdf_ptr->scenario;
+	df_ptr[this->realId-1].scen = args->scenario;
 	df_ptr[this->realId-1].factor_cbd = args->CBDFactor;   
 	df_ptr[this->realId-1].factor_ccf = args->CCFFactor;
 	df_ptr[this->realId-1].factor_ros10 = args->ROS10Factor;
@@ -484,6 +484,8 @@ std::vector<int> CellsFBP::manageFire(int period, std::unordered_set<int> & Avai
 				crownMetrics->push_back(metrics.byram);
 				crownMetrics->push_back(mainstruct.cros);
 				crownMetrics->push_back(metrics.cros);
+				crownMetrics->push_back(mainstruct.fl);
+				crownMetrics->push_back(metrics.fl);
 
                 // cannot mutate ROSangleDir during iteration.. we do it like 10 lines down
                // toPop.push_back(angle);
@@ -561,7 +563,7 @@ std::vector<int> CellsFBP::manageFireBBO(int period, std::unordered_set<int> & A
 	// Populate inputs 
 	df_ptr->waz = wdf_ptr->waz;
 	df_ptr->ws = wdf_ptr->ws;
-	df_ptr->scen = wdf_ptr->scenario;
+	df_ptr->scen = args->scenario;
 	df_ptr->factor_cbd = args->CBDFactor;   
 	df_ptr->factor_ccf = args->CCFFactor;
 	df_ptr->factor_ros10 = args->ROS10Factor;
@@ -703,6 +705,8 @@ std::vector<int> CellsFBP::manageFireBBO(int period, std::unordered_set<int> & A
 				crownMetrics->push_back(metrics.byram);
 				crownMetrics->push_back(mainstruct.cros);
 				crownMetrics->push_back(metrics.cros);
+				crownMetrics->push_back(mainstruct.fl);
+				crownMetrics->push_back(metrics.fl);
                 // cannot mutate ROSangleDir during iteration.. we do it like 10 lines down
                // toPop.push_back(angle);
                 /*if (verbose) {
@@ -781,7 +785,7 @@ bool CellsFBP::get_burned(int period, int season, int NMsg, inputs df[],  fuel_c
 	// Compute main angle and ROSs: forward, flanks and back
 	df[this->id].waz = wdf_ptr->waz;
 	df[this->id].ws = wdf_ptr->ws;
-	df[this->id].scen = wdf_ptr->scenario;
+	df[this->id].scen = args->scenario;
 	df[this->id].factor_cbd = args->CBDFactor;   
 	df[this->id].factor_ccf = args->CCFFactor;
 	df[this->id].factor_ros10 = args->ROS10Factor;
@@ -882,7 +886,7 @@ bool CellsFBP::ignition(int period, int year, std::vector<int> & ignitionPoints,
 		// Populate inputs 
 		df_ptr->waz = wdf_ptr->waz;
 		df_ptr->ws = wdf_ptr->ws;
-		df_ptr->scen = wdf_ptr->scenario;
+		df_ptr->scen = args->scenario;
 		df_ptr->factor_cbd = args->CBDFactor;   
 		df_ptr->factor_ccf = args->CCFFactor;
 		df_ptr->factor_ros10 = args->ROS10Factor;

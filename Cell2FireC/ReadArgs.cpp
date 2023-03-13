@@ -65,12 +65,15 @@ void parseArgs(int argc, char* argv[], arguments* args_ptr)
 
 	// Booleans
 	bool out_messages = false;
-	bool out_fire_behavior = false;
 	bool out_trajectories = false;
 	bool no_output = false;
 	bool verbose_input = false;
 	bool input_ignitions = false;
 	bool out_grids = false;
+	bool out_fl=false;
+	bool out_intensity=false;
+	bool out_ros=false;
+	bool out_crown = false;
 	bool out_finalgrid = false;
 	bool prom_tuned = false;
 	bool out_stats = false;
@@ -84,10 +87,26 @@ void parseArgs(int argc, char* argv[], arguments* args_ptr)
 	}
 
 	//--fire-behavior
-	if (cmdOptionExists(argv, argv + argc, "--out-behavior")) {
-		out_fire_behavior = true;
-		printf("OutMessages: %d \n", out_fire_behavior);
+	if (cmdOptionExists(argv, argv + argc, "--out-fl")) {
+		out_fl = true;
+		printf("OutFlameLength: %d \n", out_fl);
 	}
+		//--fire-behavior
+	if (cmdOptionExists(argv, argv + argc, "--out-intensity")) {
+		out_intensity = true;
+		printf("OutIntensity: %d \n", out_intensity);
+	}
+		//--fire-behavior
+	if (cmdOptionExists(argv, argv + argc, "--out-ros")) {
+		out_ros = true;
+		printf("OutROS: %d \n", out_ros);
+	}
+			//--fire-behavior
+	if (cmdOptionExists(argv, argv + argc, "--out-crown")) {
+		out_crown = true;
+		printf("OutCrown: %d \n", out_crown);
+	}
+	
 
 	//--trajectories
 	if (cmdOptionExists(argv, argv + argc, "--trajectories")) {
@@ -161,6 +180,7 @@ void parseArgs(int argc, char* argv[], arguments* args_ptr)
 	int diradius = 0;
 	int dnthreads = 1;
 	int dfmc=80;
+	int dscen=3;
 	float dROS_Threshold= 0.1;
 	float dHFI_Threshold= 0.1;
 	float dCROS_Threshold= 0.5;
@@ -238,6 +258,14 @@ void parseArgs(int argc, char* argv[], arguments* args_ptr)
 		args_ptr->fmc = std::stoi (input_fmc ,&sz);  
     }
 	else args_ptr->fmc = dfmc; 
+	
+		//--fmc
+	char * input_scenario = getCmdOption(argv, argv + argc, "--scenario");
+    if (input_scenario){
+        printf("scenario: %s \n", input_scenario);
+		args_ptr->scenario = std::stoi (input_scenario ,&sz);  
+    }
+	else args_ptr->scenario = dscen; 
 	
 	
 	//--ROS-Threshold
@@ -392,7 +420,10 @@ void parseArgs(int argc, char* argv[], arguments* args_ptr)
 		
 	// booleans
 	args_ptr->OutMessages = out_messages;
-	args_ptr->OutFireBehavior = out_fire_behavior;
+	args_ptr->OutFl = out_fl;
+	args_ptr->OutIntensity = out_intensity;
+	args_ptr->OutRos = out_ros;
+	args_ptr->OutCrown = out_crown;
 	args_ptr->Trajectories = out_trajectories; 
 	args_ptr->NoOutput = no_output;
 	args_ptr->verbose = verbose_input; 
@@ -415,7 +446,10 @@ void printArgs(arguments args){
 	std::cout << "MinutesPerWP: " << args.MinutesPerWP << std::endl; 
 	std::cout << "MaxFirePeriods: " << args.MaxFirePeriods << std::endl; 
 	std::cout << "Messages: " << args.OutMessages << std::endl;
-	std::cout << "FireBehavior: " << args.OutFireBehavior << std::endl;
+	std::cout << "OutFlameLength: " << args.OutFl << std::endl;
+	std::cout << "OutIntensity: " << args.OutIntensity << std::endl;
+	std::cout << "OutROS: " << args.OutRos << std::endl;
+	std::cout << "OutCrown: " << args.OutCrown << std::endl;
 	std::cout << "HarvestPlan: " << args.HarvestPlan << std::endl; 
 	std::cout << "TotalYears: " << args.TotalYears << std::endl; 
 	std::cout << "TotalSims: " << args.TotalSims << std::endl; 

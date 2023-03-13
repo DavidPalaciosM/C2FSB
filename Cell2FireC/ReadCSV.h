@@ -21,7 +21,6 @@
 typedef struct
    { std::string instance, datetime;
       float ws, waz;
-      int scenario;
    } weatherDF;
    
  /*
