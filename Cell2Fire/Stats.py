@@ -977,7 +977,7 @@ class Statistics(object):
                 for job in jobs:
                     job.join()            
     
-    def ReadLogfile(folder,word_to_be_found):
+    def ReadLogfile(self,folder,word_to_be_found):
         a_file = open(os.path.join(folder,"Logfile.txt"), "r")
         list_of_values = []
         simulations=[]
@@ -993,20 +993,20 @@ class Statistics(object):
         a_file.close()
         return list_of_values,simulations
     
-    def ObtainIgnitionPairs(cols,ignitions):
+    def ObtainIgnitionPairs(self,ncols,ignitions):
         rows=[]
         cols=[]
         for ignition in ignitions:
-            row=int(ignition/cols)+1
-            col=ignition%cols
+            row=int(ignition/ncols)+1
+            col=ignition%ncols
             rows.append(row)
             cols.append(col)
         return rows,cols
     
     #generates a txt representing the ignition in each simulation. the format is: simulation, ordinal point, row, column
     def OutfileIgnitions(self):
-        list_of_values,simulations=ReadLogfile(self._OutFolder, "sim")
-        rows,cols=ObtainIgnitionPairs(self._Cols, list_of_values)
+        list_of_values,simulations=self.ReadLogfile(self._OutFolder, "sim")
+        rows,cols=self.ObtainIgnitionPairs(self._Cols, list_of_values)
         dict_df={"Simulation": simulations,"Cell":list_of_values ,"Row": rows,"Col":cols}
         df=pd.DataFrame(dict_df)
         df.sort_values("Simulation",inplace=True)
