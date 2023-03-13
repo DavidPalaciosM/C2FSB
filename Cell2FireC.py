@@ -105,8 +105,8 @@ class Cell2FireC:
         print("End of Cell2Fire execution...")
         
         if self.args.Geotiffs:
-             print("Generating output Geotiff...", flush=True)
-             OutputGeotiff(self.args.InFolder,self.args.OutFolder,self.args.nsims)
+            print("Generating output Geotiff...", flush=True)
+            OutputGeotiff(self.args.InFolder,self.args.OutFolder,self.args.nsims)
         #Geotiffs
         #if self.args.geotiffs is not None:
          #   GeotiffsGenerator.OutputGeotiff(self.args.InFolder)
