@@ -20,7 +20,7 @@ typedef struct
      float ws, saz, cur, ps, cbh, ccf, cbd, elev ;
      int waz, scen, nftype,fmc;
      float factor_cbd, factor_ccf, factor_ros10, factor_actv ;
-	 bool cros, verbose;
+     bool cros, verbose;
    } inputs;
 
 
@@ -28,13 +28,13 @@ typedef struct
   { char fueltype[4] ;
     float p1, p2, p3 ;    // hros coef
     float q1, q2, q3 ; // flame length coef
-	int nftype; 
+    int nftype; 
   } fuel_coefs;
   
   typedef struct
   { float fl, fh, a, b, c, rss, angle, byram,ros_active,cfb;
      char covertype;
-	 int cros;
+     int cros;
   } main_outs;
 
 typedef struct
