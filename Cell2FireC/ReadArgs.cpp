@@ -74,6 +74,7 @@ void parseArgs(int argc, char* argv[], arguments* args_ptr)
 	bool out_intensity=false;
 	bool out_ros=false;
 	bool out_crown = false;
+	bool out_crown_consumption=false;
 	bool out_finalgrid = false;
 	bool prom_tuned = false;
 	bool out_stats = false;
@@ -105,6 +106,11 @@ void parseArgs(int argc, char* argv[], arguments* args_ptr)
 	if (cmdOptionExists(argv, argv + argc, "--out-crown")) {
 		out_crown = true;
 		printf("OutCrown: %d \n", out_crown);
+	}
+	
+	if (cmdOptionExists(argv, argv + argc, "--out-crown-consumption")) {
+		out_crown_consumption = true;
+		printf("OutCrownConsumption: %d \n", out_crown_consumption);
 	}
 	
 
@@ -424,6 +430,7 @@ void parseArgs(int argc, char* argv[], arguments* args_ptr)
 	args_ptr->OutIntensity = out_intensity;
 	args_ptr->OutRos = out_ros;
 	args_ptr->OutCrown = out_crown;
+	args_ptr->OutCrownConsumption = out_crown_consumption;
 	args_ptr->Trajectories = out_trajectories; 
 	args_ptr->NoOutput = no_output;
 	args_ptr->verbose = verbose_input; 
