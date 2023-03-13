@@ -1377,6 +1377,38 @@ void Cell2Fire::Results(){
 		CSVPloter.printIntensityAscii(this->rows, this->cols, this->xllcorner, this->yllcorner, this->cellSide, this->crownMetrics, statusCells2);
 	}
 
+		// Intensity
+	if (this->args.OutFireBehavior) {
+		this->rosFolder = this->args.OutFolder + "/FlameLength/";
+		std::string rosName;
+		std::vector<int> statusCells2(this->nCells, 0); //(long int, int);
+
+		// Update status 
+		for (auto& bc : this->burningCells) {
+			statusCells2[bc - 1] = 1;
+		}
+		for (auto& ac : this->burntCells) {
+			statusCells2[ac - 1] = 1;
+		}
+		for (auto& hc : this->harvestCells) {
+			statusCells2[hc - 1] = -1;
+		}
+
+		if (this->sim < 10) {
+			rosName = this->rosFolder + "FL" + std::to_string(this->sim) + ".asc";
+		}
+
+		else {
+			rosName = this->rosFolder + "FL" + std::to_string(this->sim) + ".asc";
+		}
+
+		if (this->args.verbose) {
+			std::cout << "We are generating the Flame Lenght to a asc file " << rosName << std::endl;
+		}
+		CSVWriter CSVPloter(rosName, " ");
+		CSVPloter.printFLAscii(this->rows, this->cols, this->xllcorner, this->yllcorner, this->cellSide, this->crownMetrics, statusCells2);
+	}
+
 
 	// Crown
 	if ((this->args.OutFireBehavior) && (this->args.AllowCROS)) {

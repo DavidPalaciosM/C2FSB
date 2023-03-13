@@ -484,6 +484,8 @@ std::vector<int> CellsFBP::manageFire(int period, std::unordered_set<int> & Avai
 				crownMetrics->push_back(metrics.byram);
 				crownMetrics->push_back(mainstruct.cros);
 				crownMetrics->push_back(metrics.cros);
+				crownMetrics->push_back(mainstruct.fl);
+				crownMetrics->push_back(metrics.fl);
 
                 // cannot mutate ROSangleDir during iteration.. we do it like 10 lines down
                // toPop.push_back(angle);
@@ -703,6 +705,8 @@ std::vector<int> CellsFBP::manageFireBBO(int period, std::unordered_set<int> & A
 				crownMetrics->push_back(metrics.byram);
 				crownMetrics->push_back(mainstruct.cros);
 				crownMetrics->push_back(metrics.cros);
+				crownMetrics->push_back(mainstruct.fl);
+				crownMetrics->push_back(metrics.fl);
                 // cannot mutate ROSangleDir during iteration.. we do it like 10 lines down
                // toPop.push_back(angle);
                 /*if (verbose) {
