@@ -55,7 +55,6 @@ class Cell2Fire {
 		 double yllcorner;
 		 // Booleans
 		 bool noIgnition = true;  		//  None = -1
-		 bool activeCrown=false;
 		 bool messagesSent = false;
 		 bool repeatFire = false;
 		 bool done = false;
@@ -89,12 +88,9 @@ class Cell2Fire {
 		 vector<int> burnedOutList;
 		 std::vector<double> FSCell;
 		 std::vector<float> crownMetrics;
-		 std::vector<int>crownState;
-		 std::vector<float>Intensities;
-		 std::vector<float>crownFraction;
-		 std::vector<float>RateOfSpreads;
+		 //std::vector<unordered_set<int>> IgnitionSets;
 		 std::vector<std::vector<int>> IgnitionSets;
-
+		 
 		 // Sets
 		 std::unordered_set<int> availCells;				
 		 std::unordered_set<int> nonBurnableCells; 	
