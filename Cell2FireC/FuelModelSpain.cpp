@@ -18,6 +18,7 @@ using namespace std;
 */  
 std::unordered_map<int, std::vector<float>> p_coeff;
 std::unordered_map<int, std::vector<float>> q_coeff;
+std::unordered_map<int, std::vector<float>> fm_parameters;
  
 /*
 	Functions
@@ -2029,7 +2030,170 @@ void initialize_coeff(int scenario)
 	  q_coeff.insert(std::make_pair(F189, q_189));
 
 	}
+
+//Fuel Model Parameters for Crown Fire
+std::vector<float> fp_101;
+fp_101.push_back(0.1+0.0+0.0+0.3+0.0);
+fp_101.push_back(8000);
+fm_parameters.insert(std::make_pair(101,fp_101));
+
+std::vector<float> fp_102;
+fp_102.push_back(0.1+0.0+0.0+1.0+0.0);
+fp_102.push_back(8000);
+fm_parameters.insert(std::make_pair(102,fp_102));
+
+std::vector<float> fp_103;
+fp_103.push_back(0.1+0.4+0.0+1.5+0.0);
+fp_103.push_back(8000);
+fm_parameters.insert(std::make_pair(103,fp_103));
+
+std::vector<float> fp_104;
+fp_104.push_back(0.25+0.0+0.0+1.9+0.0);
+fp_104.push_back(8000);
+fm_parameters.insert(std::make_pair(104,fp_104));
+
+std::vector<float> fp_105;
+fp_105.push_back(0.4+0.0+0.0+2.5+0.0);
+fp_105.push_back(8000);
+fm_parameters.insert(std::make_pair(105,fp_105));
+
+std::vector<float> fp_106;
+fp_106.push_back(0.1+0.0+0.0+3.4+0.0);
+fp_106.push_back(9000);
+fm_parameters.insert(std::make_pair(106,fp_106));
+
+std::vector<float> fp_107;
+fp_107.push_back(1.0+0.0+0.0+5.4+0.0);
+fp_107.push_back(8000);
+fm_parameters.insert(std::make_pair(107,fp_107));
+
+std::vector<float> fp_108;
+fp_108.push_back(0.5+1.0+0.0+7.3+0.0);
+fp_108.push_back(8000);
+fm_parameters.insert(std::make_pair(108,fp_108));
+
+std::vector<float> fp_121;
+fp_121.push_back(0.2+0.0+0.0+0.5+0.65);
+fp_121.push_back(8000);
+fm_parameters.insert(std::make_pair(121,fp_121));
+
+std::vector<float> fp_122;
+fp_122.push_back(0.5+0.5+0.0+0.6+1.0);
+fp_122.push_back(8000);
+fm_parameters.insert(std::make_pair(122,fp_122));
+
+std::vector<float> fp_123;
+fp_123.push_back(0.3+0.25+0.0+1.45+1.25);
+fp_123.push_back(8000);
+fm_parameters.insert(std::make_pair(123,fp_123));
+
+std::vector<float> fp_124;
+fp_124.push_back(1.9+0.3+0.1+3.4+7.1);
+fp_124.push_back(8000);
+fm_parameters.insert(std::make_pair(124,fp_124));
+
+std::vector<float> fp_142;
+fp_142.push_back(1.35+2.4+0.75+0.0+3.85);
+fp_142.push_back(8000);
+fm_parameters.insert(std::make_pair(142,fp_142));
+
+std::vector<float> fp_143;
+fp_143.push_back(0.45+3.0+0.0+0.0+6.2);
+fp_143.push_back(8000);
+fm_parameters.insert(std::make_pair(143,fp_143));
+
+std::vector<float> fp_144;
+fp_144.push_back(0.85+1.15+0.2+0.0+2.55);
+fp_144.push_back(8000);
+fm_parameters.insert(std::make_pair(144,fp_144));
+
+std::vector<float> fp_145;
+fp_145.push_back(3.6+2.1+0.0+0.0+2.9);
+fp_145.push_back(8000);
+fm_parameters.insert(std::make_pair(145,fp_145));
+
+std::vector<float> fp_146;
+fp_146.push_back(2.9+1.45+0.0+0.0+1.4);
+fp_146.push_back(8000);
+fm_parameters.insert(std::make_pair(146,fp_146));
+
+std::vector<float> fp_147;
+fp_147.push_back(3.5+5.3+2.2+0.0+3.4);
+fp_147.push_back(8000);
+fm_parameters.insert(std::make_pair(147,fp_147));
+
+std::vector<float> fp_148;
+fp_148.push_back(2.05+3.4+0.85+0.0+4.35);
+fp_148.push_back(8000);
+fm_parameters.insert(std::make_pair(148,fp_148));
+
+std::vector<float> fp_149;
+fp_149.push_back(4.5+2.45+0.0+1.55+7.0);
+fp_149.push_back(8000);
+fm_parameters.insert(std::make_pair(149,fp_149));
+
+std::vector<float> fp_161;
+fp_161.push_back(0.2+0.9+1.5+0.2+0.9);
+fp_161.push_back(8000);
+fm_parameters.insert(std::make_pair(161,fp_161));
+
+std::vector<float> fp_162;
+fp_162.push_back(0.95+1.8+1.25+0.0+0.2);
+fp_162.push_back(8000);
+fm_parameters.insert(std::make_pair(162,fp_162));
+
+std::vector<float> fp_163;
+fp_163.push_back(1.1+0.15+0.25+0.65+1.1);
+fp_163.push_back(8000);
+fm_parameters.insert(std::make_pair(163,fp_163));
+
+std::vector<float> fp_164;
+fp_164.push_back(4.5+0.0+0.0+0.0+2.0);
+fp_164.push_back(8000);
+fm_parameters.insert(std::make_pair(164,fp_164));
+
+std::vector<float> fp_165;
+fp_165.push_back(4.0+4.0+3.0+0.0+3.0);
+fp_165.push_back(8000);
+fm_parameters.insert(std::make_pair(165,fp_165));
+
+std::vector<float> fp_181;
+fp_181.push_back(1.0+2.2+3.6+0.0+0.0);
+fp_181.push_back(8000);
+fm_parameters.insert(std::make_pair(181,fp_181));
+
+std::vector<float> fp_182;
+fp_182.push_back(1.4+2.3+2.2+0.0+0.0);
+fp_182.push_back(8000);
+fm_parameters.insert(std::make_pair(182,fp_182));
+
+std::vector<float> fp_183;
+fp_183.push_back(0.5+2.2+2.8+0.0+0.0);
+fp_183.push_back(8000);
+fm_parameters.insert(std::make_pair(183,fp_183));
+
+std::vector<float> fp_185;
+fp_185.push_back(1.15+2.5+4.4+0.0+0.0);
+fp_185.push_back(8000);
+fm_parameters.insert(std::make_pair(185,fp_185));
+
+std::vector<float> fp_186;
+fp_186.push_back(2.4+1.2+1.2+0.0+0.0);
+fp_186.push_back(8000);
+fm_parameters.insert(std::make_pair(186,fp_186));
+
+std::vector<float> fp_188;
+fp_188.push_back(5.8+1.4+1.1+0.0+0.0);
+fp_188.push_back(8000);
+fm_parameters.insert(std::make_pair(188,fp_188));
+
+std::vector<float> fp_189;
+fp_189.push_back(6.65+3.3+4.15+0.0+0.0);
+fp_189.push_back(8000);
+fm_parameters.insert(std::make_pair(189,fp_189));
+
 }
+
 
 
 float rate_of_spread(inputs *data, fuel_coefs *ptr, main_outs *at)
@@ -2044,7 +2208,7 @@ float rate_of_spread(inputs *data, fuel_coefs *ptr, main_outs *at)
    at->rss = 1.0 / (p1 * exp(-p2 * ws) + p3) ;
    
    return at->rss * (at->rss >= 0) ;
-
+	
    }
 
 float flankfire_ros(float ros,float bros,float lb)
@@ -2108,22 +2272,6 @@ float flame_height(inputs *data, fuel_coefs *ptr)
       return fh ;
   }
 
-//bool fire_type_original(inputs *data, fuel_coefs *ptr)
-//  {
-//      float fh, cbh, dist ;
-//      bool crownFire = false ;
-//
-//      fh = flame_height(data, ptr) ;
-//      cbh = data->cbh ;
-//      dist = abs(cbh - fh) ;
-//	  //cout << "   dist (cbh - fh) = " << dist << "\n";
-//	  //cout << "   fh vs  cbh = " << fh << ", " << cbh << "\n";
-//	  
-//      if (((dist <= 1.0) || (fh >= cbh)) && (cbh > 0)) crownFire = true ;
-//      
-//      return crownFire ;
-//  }
-
 
 float byram_intensity(main_outs* at, fuel_coefs* ptr) {
 	float fl, ib;
@@ -2173,6 +2321,16 @@ float rate_of_spread10(inputs *data)
    
    return(ros);
    }
+
+
+float final_rate_of_spread10(inputs *data,  main_outs* at)
+   {
+ 	float  ros_active, ros_final, ros;
+    ros = at->rss;
+    ros_active=at->ros_active;
+    ros_final = ros + at->cfb * (ros_active - ros); 
+   return(ros_final);
+   }
  
 float backfire_ros10(fire_struc *hptr, snd_outs *sec)
   {
@@ -2184,8 +2342,51 @@ float backfire_ros10(fire_struc *hptr, snd_outs *sec)
     
     return bros;
   }
+
+float crownfractionburn(inputs* data, main_outs* at) { //generar output de cfb
+    float a, cbd, ros, ros0, H, wa, i0, cbh, FMC, cfb;
+    FMC = fmc_scen(data->scen);; //modificar para ingresar manualmente
+    cbh = data->cbh;
+    i0 = pow((0.01 * cbh * (460 + 25.9 * FMC)), 1.5);
+    wa = fm_parameters[data->nftype][0];
+	H = fm_parameters[data->nftype][1];
+    cbd = data->cbd;
+    ros0 = 60 * i0 / (H * wa);
+    ros = at->rss;
+    if (cbd != 0) {
+        a = -log(0.1) / (0.9 * (3.0 / cbd - ros0));
+		//a=0.23;
+    }
+    else {
+        a=0.23;
+    }
+    cfb=1 - exp(-a * (ros - ros0));
+	if (cfb<0){
+		cfb=0;
+	}
+    return cfb;
+}
+
+
+bool checkActive(inputs * data,main_outs* at) //En s&b se usa fm10
+{
+    float  rac, cbd,H,wa,i0,cbh,fmc;
+    bool active;
+    //rac = at->ros_active;
+    fmc = fmc_scen(data->scen);; //modificar para ingresar manualmente
+    cbh = data->cbh;
+    i0 = pow((0.01 * cbh * (460 + 25.9 * fmc)), 1.5);
+    wa = fm_parameters[data->nftype][0];
+	H = fm_parameters[data->nftype][1];
+    cbd = data->cbd;
+    rac = 60 * i0 / (H * wa);
+
+    active=cbd*rac>=3;
+    return active;
+}
+
   
- void calculate(inputs *data,  fuel_coefs * ptr, main_outs *at, snd_outs *sec, fire_struc *hptr, fire_struc *fptr,fire_struc *bptr)
+ void calculate(inputs *data,  fuel_coefs * ptr, main_outs *at, snd_outs *sec, fire_struc *hptr, fire_struc *fptr,fire_struc *bptr,bool & activeCrown)
 {
     // Hack: Initialize coefficients 
 	initialize_coeff(data->scen);
@@ -2212,7 +2413,6 @@ float backfire_ros10(fire_struc *hptr, snd_outs *sec)
     // Step 1: Calculate HROS (surface)
     at->rss = rate_of_spread(data, ptr, at);
     hptr->rss = at->rss ;
-	
     
     // Step 2: Calculate Length-to-breadth
     sec->lb = l_to_b(data->ws) ;
@@ -2241,21 +2441,54 @@ float backfire_ros10(fire_struc *hptr, snd_outs *sec)
 	at->byram = byram_intensity(at, ptr);
 
 	// Step 10: Criterion for Crown Fire Initiation (no init if user does not want to include it)
-	if (data->cros) {
-		crownFire = fire_type(data, at);
-		if (data->verbose) {
-			cout << "Checking crown Fire conditions " << crownFire << "\n";
+	if (data->cros && data->cbh!=0 && data->cbd!=0) {
+		if (activeCrown){
+		at->ros_active=rate_of_spread10(data);
+		if (!checkActive(data,at)) {
+			activeCrown=false;
+			}
+		}
+		else{
+			crownFire=fire_type(data,at);
+			if(data->verbose){
+				cout << "Checking crown Fire conditions " << crownFire << "\n";
+
+			}
 		}
 	}
 	else {
 		crownFire = false;
+		activeCrown=false;
 	}
 
-    
 
 	// If we have Crown fire, update the ROSs
     if (crownFire){
-            hptr->ros = rate_of_spread10(data) ;
+            at->ros_active=rate_of_spread10(data);
+            at->cfb = crownfractionburn(data, at);
+
+            hptr->ros = final_rate_of_spread10(data,at) ;
+            at->rss=hptr->ros;
+            bptr->ros = backfire_ros10(hptr,sec) ;
+            fptr->ros = flankfire_ros(hptr->ros, bptr->ros, sec->lb) ;
+			if (data->verbose){
+				cout << "hptr->ros = " << hptr->ros << "\n" ;
+				cout << "bptr->ros = " << bptr->ros << "\n" ;
+				cout << "fptr->ros = " << fptr->ros << "\n" ;
+			}
+
+            at->a = (hptr->ros + bptr->ros) / 2. ;
+            at->b = (hptr->ros + bptr->ros) / (2. * sec->lb) ; 
+            at->c = (hptr->ros - bptr->rss) / 2 ; 
+			at->cros = 1;
+            activeCrown=true;
+
+
+    }
+    else if (activeCrown){
+            at->cfb = crownfractionburn(data, at); //lo calculamos igual porque lo necesitamos para el output
+            hptr->ros = at->ros_active ;
+            at->rss=hptr->ros;
             bptr->ros = backfire_ros10(hptr,sec) ;
             fptr->ros = flankfire_ros(hptr->ros, bptr->ros, sec->lb) ;
             
@@ -2267,12 +2500,18 @@ float backfire_ros10(fire_struc *hptr, snd_outs *sec)
 
             at->a = (hptr->ros + bptr->ros) / 2. ;
             at->b = (hptr->ros + bptr->ros) / (2. * sec->lb) ; 
-            at->c = (hptr->ros - bptr->ros) / 2 ; 
-			at->cros = true;
+            at->c = (hptr->ros - bptr->rss) / 2 ; 
+			at->cros = 1;
+            //std::cout  << "ros_activo: "  <<hptr->ros <<  std::endl;
+
+
+
     }
 	
 	// Otherwise, use the surface alues
     else{
+        at->cros=0;
+		at->cfb=0;
         hptr->ros = hptr->rss ;
         bptr->ros = bptr->rss ; 
         fptr->ros = fptr->rss ;
@@ -2281,8 +2520,13 @@ float backfire_ros10(fire_struc *hptr, snd_outs *sec)
 			cout << "bptr->ros = " << bptr->ros << "\n" ;
 			cout << "fptr->ros = " << fptr->ros << "\n" ;
 		}
+
     }
-	
+	//if (hptr->ros>100){
+	//cout << "hptr->rss = " << hptr->ros << "\n" ;
+
+	//}
+
 	if (data->verbose){
 		cout << "--------------- Inputs --------------- \n" ;
 		cout << "ws = " << data->ws << "\n" ;
@@ -2316,9 +2560,8 @@ void determine_destiny_metrics(inputs* data, fuel_coefs* ptr, main_outs* metrics
 	initialize_coeff(data->scen);
 
 	// Aux
-	float  ros, bros, lb, fros;
+	float  ros=0, bros=0, lb=0, fros=0;
 	bool crownFire = false;
-
 	ptr->q1 = q_coeff[data->nftype][0];
 	ptr->q2 = q_coeff[data->nftype][1];
 	ptr->q3 = q_coeff[data->nftype][2];
@@ -2328,16 +2571,23 @@ void determine_destiny_metrics(inputs* data, fuel_coefs* ptr, main_outs* metrics
 	// Step 9: Byram Intensity
 	metrics->byram = byram_intensity(metrics, ptr);
 
-	// Step 10: Criterion for Crown Fire Initiation (no init if user does not want to include it)
-	if (data->cros) {
-		crownFire = fire_type(data, metrics);
-		if (data->verbose) {
-			cout << "Checking crown Fire conditions " << crownFire << "\n";
-		}
-	}
-	else {
-		crownFire = false;
-	}
+    // Step 10: Criterion for Crown Fire Initiation (no init if user does not want to include it)
+    if (data->cros) {
+        crownFire = fire_type(data, metrics);
+        if (crownFire){
+            metrics->cfb = crownfractionburn(data, metrics);
+
+        }
+        if (data->verbose) {
+            cout << "Checking crown Fire conditions " << crownFire << "\n";
+        }
+    }
+    else {
+        crownFire = false;
+    }
+
+	
+
 
 	metrics->cros = crownFire;
 }
