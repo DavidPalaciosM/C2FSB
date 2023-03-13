@@ -71,7 +71,10 @@ def cell2Fire_call():
     l1 = ttk.Label(text=call, font=('Georgia 6'))
     l1.place(x=20, y=620)
     #call command prompt
-    main_call="ubuntu run time "+call
+    # ubuntu
+    #main_call="ubuntu run time "+call
+    # any linux
+    main_call=call
     print(main_call)
     os.system(main_call)
     
