@@ -70,15 +70,15 @@ class CellsFBP {
                                                           inputs df[], fuel_coefs * coef, 
 														  std::vector<std::vector<int>> & coordCells, std::unordered_map<int, CellsFBP> & Cells_Obj, 
 														  arguments * args, weatherDF * wdf_ptr, std::vector<double> * FSCell, std::vector<float> * crownMetrics,
-														  double randomROS);
+														  bool & activeCrown,double randomROS,std::vector<int> & crownState, std::vector<float> & crownFraction, std::vector<float> & Intensities, std::vector<float> & RateOfSpreads);
 		
 		std::vector<int> manageFireBBO(int period, std::unordered_set<int> & AvailSet,      
 															inputs * df_ptr, fuel_coefs * coef, 
 															std::vector<std::vector<int>> & coordCells, std::unordered_map<int, CellsFBP> & Cells_Obj, 
 															arguments * args, weatherDF * wdf_ptr, std::vector<double> * FSCell, std::vector<float> * crownMetrics,
-															double randomROS, std::vector<float> & EllipseFactors);
+															bool & activeCrown,double randomROS, std::vector<float> & EllipseFactors,std::vector<int> & crownState, std::vector<float> & crownFraction, std::vector<float> & Intensities, std::vector<float> & RateOfSpreads);
 		
-		bool get_burned(int period, int season, int NMsg, inputs df[],  fuel_coefs * coef, arguments * args, weatherDF * wdf_ptr) ;
+		bool get_burned(int period, int season, int NMsg, inputs df[],  fuel_coefs * coef, arguments * args, weatherDF * wdf_ptr,bool & activeCrown) ;
 								
 		void set_Adj(std::unordered_map<std::string, int> & adjacentCells);
 		
@@ -87,7 +87,7 @@ class CellsFBP {
 		std::string getStatus();
 		
 		bool ignition(int period, int year, std::vector<int> & ignitionPoints, inputs * df_ptr,   // WORKING CHECK OK
-						   fuel_coefs * coef, arguments *args, weatherDF * wdf_ptr);
+						   fuel_coefs * coef, arguments *args, weatherDF * wdf_ptr,bool & activeCrown);
 						  
 		void harvested(int id, int period);
 		
