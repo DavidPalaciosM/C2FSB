@@ -1,6 +1,5 @@
 #include "ReadCSV.h"
 #include "FuelModelSpain.h"
-#include "ReadArgs.h"
 
 #include <iostream>
 #include <fstream>
@@ -64,14 +63,12 @@ void CSVReader::printData(std::vector<std::vector<std::string>> & DF){
 /*
 * Populates the df input objects based on the DF csv file for each row/cell (spanish version)
 */
-void CSVReader::parseDF(inputs * df_ptr, std::vector<std::vector<std::string>> & DF,arguments* args_ptr,int NCells){
 	int i;
 	
 	// Floats 
 	float cur, elev, ws, waz, saz, cbd, cbh, ccf, ps;
 	
 	// Integers 
-	int nftype,fmc;
 	
 	// CChar
 	const char * faux;
@@ -113,15 +110,11 @@ void CSVReader::parseDF(inputs * df_ptr, std::vector<std::vector<std::string>> &
 		if (DF[i][12].compare("") == 0) nftype = 0;
 		else nftype = std::stoi (DF[i][12], &sz);
 		
-		if (DF[i][13].compare("") == 0) fmc = args_ptr->fmc;
-		else fmc = std::stoi (DF[i][13], &sz);
-		
 		// Set values
 		strncpy(df_ptr->fueltype, faux, 4);
 		df_ptr->elev=elev; df_ptr->ws=ws; df_ptr->waz=waz;  
 		df_ptr->ps=ps; df_ptr->saz=saz; df_ptr->cur=cur; 
 		df_ptr->cbd=cbd;df_ptr->cbh=cbh; df_ptr->ccf=ccf;
-		df_ptr->nftype=nftype;df_ptr->fmc=fmc;
 			
 		// Next pointer
 		df_ptr++;
@@ -172,13 +165,9 @@ void CSVReader::parsePROB(std::vector<float>& probabilities, std::vector<std::ve
 	// Loop over cells (populating per row)
 	for (i = 1; i <= NCells; i++) {
 		//printf("Populating DF for cell %d\n", i);
-		if (DF[i][14].compare("") == 0) Prob = 1;
-		else Prob = std::stof(DF[i][14], &sz);
 
 
 		// Set values
-		probabilities[i-1]=Prob;
-		//probabilities.push_back(Prob);
 
 	}
 }
@@ -492,12 +481,10 @@ void CSVReader::printDF(inputs df){
 	std::cout << df.fueltype; std::cout << " ";
 	std::cout << " " << df.elev; std::cout << " " << df.ws; std::cout << " " << df.waz; 
 	std::cout << " " << df.ps; std::cout << " " << df.saz; std::cout << " " << df.cur; 
-	std::cout << " " << df.cbd; std::cout << " " << df.cbh; std::cout << " " << df.ccf; std::cout << " " << df.fmc  << std::endl;
 }
 
 
 void CSVReader::printWeatherDF(weatherDF wdf){
-	std::cout << " " << wdf.datetime; 
 	std::cout << " " << wdf.ws; std::cout << " " << wdf.waz; 
 }
 
