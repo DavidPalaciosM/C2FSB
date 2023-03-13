@@ -1402,7 +1402,7 @@ void Cell2Fire::Results(){
 		}
 
 		if (this->sim < 10) {
-			rosName = this->rosFolder + "FL" + std::to_string(this->sim) + ".asc";
+			rosName = this->rosFolder + "FL0" + std::to_string(this->sim) + ".asc";
 		}
 
 		else {
