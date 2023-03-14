@@ -2345,7 +2345,7 @@ float backfire_ros10(fire_struc *hptr, snd_outs *sec)
 
 float crownfractionburn(inputs* data, main_outs* at) { //generar output de cfb
     float a, cbd, ros, ros0, H, wa, i0, cbh, FMC, cfb;
-    FMC = fmc_scen(data->scen);; //modificar para ingresar manualmente
+    FMC = fmc_scen(data);; //modificar para ingresar manualmente
     cbh = data->cbh;
     i0 = pow((0.01 * cbh * (460 + 25.9 * FMC)), 1.5);
     wa = fm_parameters[data->nftype][0];
@@ -2373,7 +2373,7 @@ bool checkActive(inputs * data,main_outs* at) //En s&b se usa fm10
     float  rac, cbd,H,wa,i0,cbh,fmc;
     bool active;
     //rac = at->ros_active;
-    fmc = fmc_scen(data->scen);; //modificar para ingresar manualmente
+    fmc = fmc_scen(data);; //modificar para ingresar manualmente
     cbh = data->cbh;
     i0 = pow((0.01 * cbh * (460 + 25.9 * fmc)), 1.5);
     wa = fm_parameters[data->nftype][0];
