@@ -2,6 +2,7 @@
 #define READCSV
 
 #include "FuelModelSpain.h"
+#include "ReadArgs.h"
 
 #include <iostream>
 #include <fstream>
