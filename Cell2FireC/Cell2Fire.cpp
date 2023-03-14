@@ -190,7 +190,8 @@ Cell2Fire::Cell2Fire(arguments _args) : CSVWeather(_args.InFolder + "Weather.csv
 	this->crownFraction = std::vector<float> (this->nCells, 0);
 	this->Intensities = std::vector<float> (this->nCells, 0);
 	this->RateOfSpreads = std::vector<float> (this->nCells, 0);
-	
+	this->FlameLengths = std::vector<float> (this->nCells, 0);
+
 	this->ignProb = std::vector<float>(this->nCells, 1);
 	CSVParser.parsePROB(this->ignProb, DF, this->nCells);
 
@@ -507,7 +508,7 @@ void Cell2Fire::reset(int rnumber, double rnumber2, int simExt = 1){
 		CSVFolder.MakeDir(this->messagesFolder);
 		this->messagesFolder = this->args.OutFolder + "/Intensity/";
 	}
-	//Byram Intensity Folder
+	//Flame Length Folder
 	if (this->args.OutFl) {
 		CSVWriter CSVFolder("", "");
 		this->messagesFolder = "mkdir -p " + this->args.OutFolder + "/FlameLength/";
@@ -522,7 +523,7 @@ void Cell2Fire::reset(int rnumber, double rnumber2, int simExt = 1){
 		this->messagesFolder = this->args.OutFolder + "/CrownFire/";
 	}
 		//Crown Fraction Burn Folder
-	if (this->args.OutFireBehavior && this->args.AllowCROS) {
+	if (this->args.OutCrownConsumption && this->args.AllowCROS) {
 		CSVWriter CSVFolder("", "");
 		this->messagesFolder = "mkdir -p " + this->args.OutFolder + "/CrownFractionBurn/";
 		CSVFolder.MakeDir(this->messagesFolder);
@@ -987,7 +988,7 @@ std::unordered_map<int, std::vector<int>> Cell2Fire::SendMessages(){
 			if (!this->args.BBOTuning){  //&df[cell-1] replaced by full df for getting the slopes
 				aux_list = it->second.manageFire(this->fire_period[this->year-1], this->availCells,  df, this->coef_ptr, 
 															   this->coordCells, this->Cells_Obj, this->args_ptr, &wdf[this->weatherPeriod],
-															   &this->FSCell, &this->crownMetrics,this->activeCrown, this->ROSRV,this->crownState, this->crownFraction, this->Intensities, this->RateOfSpreads);
+															   &this->FSCell, &this->crownMetrics,this->activeCrown, this->ROSRV,this->crownState, this->crownFraction, this->Intensities, this->RateOfSpreads, this->FlameLengths);
 			}
 												
 			
@@ -996,7 +997,7 @@ std::unordered_map<int, std::vector<int>> Cell2Fire::SendMessages(){
 				auto factors = BBOFactors.find(NFTypesCells[cell-1]);
 				aux_list = it->second.manageFireBBO(this->fire_period[this->year-1], this->availCells,  & df[cell-1], this->coef_ptr, 
 																		this->coordCells, this->Cells_Obj, this->args_ptr, &wdf[this->weatherPeriod],
-																		&this->FSCell, &this->crownMetrics,this->activeCrown, this->ROSRV, factors->second,this->crownState, this->crownFraction, this->Intensities, this->RateOfSpreads);
+																		&this->FSCell, &this->crownMetrics,this->activeCrown, this->ROSRV, factors->second,this->crownState, this->crownFraction, this->Intensities, this->RateOfSpreads, this->FlameLengths);
 			}
 			//std::cout << "Sale de Manage Fire" << std::endl;
 		} 
@@ -1296,26 +1297,6 @@ void Cell2Fire::Results(){
 			this->gridFolder = this->args.OutFolder + "/Grids/Grids" + std::to_string(this->sim) + "/";
 		//std::string gridName = this->gridFolder + "FinalStatus_" + std::to_string(this->sim) + ".csv";
 		outputGrid();
-		
-		/*if(this->args.verbose){
-			std::cout  << "We are plotting the final forest status to a csv file " << gridName << std::endl;
-		}
-		CSVWriter CSVPloter(gridName, ",");
-		
-		for (auto & cell: this->Cells_Obj){
-			if(cell.second.getStatus() == "Burning" || cell.second.getStatus() == "Burnt"){
-				this->statusCells[cell.second.id] = 1;
-				//std::cout  << "We are including cell " << cell.second.realId << " in the plot" << std::endl;
-			}
-		}
-		
-		
-		std::vector<int> statusCellsCSV (this->nCells);
-		for (i=0; i < this->statusCells.size(); i++){		
-			if(this->statusCells[i] == 1) statusCellsCSV[i] = 1;
-		}
-		CSVPloter.printCSV(this->rows, this->cols, statusCellsCSV);
-		*/
 	}
 	
 	
@@ -1382,19 +1363,6 @@ void Cell2Fire::Results(){
 	if (this->args.OutFl) {
 		this->rosFolder = this->args.OutFolder + "/FlameLength/";
 		std::string rosName;
-		std::vector<int> statusCells2(this->nCells, 0); //(long int, int);
-
-		// Update status 
-		for (auto& bc : this->burningCells) {
-			statusCells2[bc - 1] = 1;
-		}
-		for (auto& ac : this->burntCells) {
-			statusCells2[ac - 1] = 1;
-		}
-		for (auto& hc : this->harvestCells) {
-			statusCells2[hc - 1] = -1;
-		}
-
 		if (this->sim < 10) {
 			rosName = this->rosFolder + "FL0" + std::to_string(this->sim) + ".asc";
 		}
@@ -1407,12 +1375,32 @@ void Cell2Fire::Results(){
 			std::cout << "We are generating the Flame Lenght to a asc file " << rosName << std::endl;
 		}
 		CSVWriter CSVPloter(rosName, " ");
-		CSVPloter.printFLAscii(this->rows, this->cols, this->xllcorner, this->yllcorner, this->cellSide, this->crownMetrics, statusCells2);
+		CSVPloter.printASCII(this->rows, this->cols, this->xllcorner, this->yllcorner, this->cellSide, this->FlameLengths);
+	}
+
+	
+		// Intensity
+	if ((this->args.OutCrownConsumption) && (this->args.AllowCROS)) {
+		this->rosFolder = this->args.OutFolder + "/CrownFractionBurn/";
+		std::string rosName;
+		if (this->sim < 10) {
+			rosName = this->rosFolder + "Cfb0" + std::to_string(this->sim) + ".asc";
+		}
+
+		else {
+			rosName = this->rosFolder + "Cfb" + std::to_string(this->sim) + ".asc";
+		}
+
+		if (this->args.verbose) {
+			std::cout << "We are generating the Crown Fraction Burn to a asc file " << rosName << std::endl;
+		}
+		CSVWriter CSVPloter(rosName, " ");
+		CSVPloter.printASCII(this->rows, this->cols, this->xllcorner, this->yllcorner, this->cellSide, this->crownFraction);
 	}
 
 
 	// Crown
-	if ((this->args.OutFireBehavior) && (this->args.AllowCROS)) {
+	if ((this->args.OutCrown) && (this->args.AllowCROS)) {
 		this->rosFolder = this->args.OutFolder + "/CrownFire/";
 		std::string rosName;
 		if (this->sim < 10) {
@@ -1428,23 +1416,7 @@ void Cell2Fire::Results(){
 		//CSVPloter.printCrownAscii(this->rows, this->cols, this->xllcorner, this->yllcorner, this->cellSide, this->crownMetrics, statusCells2); /OLD VERSION
 		CSVPloter.printASCIIInt(this->rows, this->cols, this->xllcorner, this->yllcorner, this->cellSide, this->crownState);
 
-	}
-
-		if (this->sim < 10) {
-			rosName = this->rosFolder + "Crown0" + std::to_string(this->sim) + ".asc";
-		}
-
-		else {
-			rosName = this->rosFolder + "Crown" + std::to_string(this->sim) + ".asc";
-		}
-
-		if (this->args.verbose) {
-			std::cout << "We are generating the Crown behavior to a asc file " << rosName << std::endl;
-		}
-		CSVWriter CSVPloter(rosName, " ");
-		CSVPloter.printCrownAscii(this->rows, this->cols, this->xllcorner, this->yllcorner, this->cellSide, this->crownMetrics, statusCells2);
-	}
-	
+	}	
 	
 }
 
