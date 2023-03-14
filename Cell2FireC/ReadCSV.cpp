@@ -196,8 +196,6 @@ void CSVReader::parseWeatherDF(weatherDF * wdf_ptr, std::vector<std::vector<std:
 	//Floats 
 	float ws, waz;
 	
-	//Ints 
-	int scenario;
 	
 	// Loop over cells (populating per row)
 	for (i=1; i <= WPeriods; i++){
@@ -215,14 +213,11 @@ void CSVReader::parseWeatherDF(weatherDF * wdf_ptr, std::vector<std::vector<std:
 		if (DF[i][2].compare("") == 0) ws = 0;
 		else ws = std::stof (DF[i][2], &sz);
 		
-		if (DF[i][4].compare("") == 0) scenario = 0;
-		else scenario = std::stof (DF[i][4], &sz);
 		
 		// Set values
 		wdf_ptr->instance = instance;
 		wdf_ptr->datetime = datetime;
 		wdf_ptr->ws=ws; wdf_ptr->waz=waz; 
-		wdf_ptr->scenario = scenario;
 			
 		// Next pointer
 		wdf_ptr++;
@@ -500,7 +495,7 @@ void CSVReader::printDF(inputs df){
 
 
 void CSVReader::printWeatherDF(weatherDF wdf){
-	std::cout << wdf.scenario; std::cout << " " << wdf.datetime; 
+	std::cout << " " << wdf.datetime; 
 	std::cout << " " << wdf.ws; std::cout << " " << wdf.waz; 
 }
 

@@ -20,7 +20,7 @@ typedef struct
      float ws, saz, cur, ps, cbh, ccf, cbd, elev ;
      int waz, scen, nftype,fmc;
      float factor_cbd, factor_ccf, factor_ros10, factor_actv ;
-	 bool cros, verbose;
+     bool cros, verbose;
    } inputs;
 
 
@@ -28,13 +28,13 @@ typedef struct
   { char fueltype[4] ;
     float p1, p2, p3 ;    // hros coef
     float q1, q2, q3 ; // flame length coef
-	int nftype; 
+    int nftype; 
   } fuel_coefs;
   
   typedef struct
-  { float fl, fh, a, b, c, rss, angle, byram;
+  { float fl, fh, a, b, c, rss, angle, byram,ros_active,cfb;
      char covertype;
-	 bool cros;
+     int cros;
   } main_outs;
 
 typedef struct
@@ -83,6 +83,9 @@ bool fire_type(inputs *data, fuel_coefs *ptr) ;
 // CROS adjustements
 float rate_of_spread10(inputs *data) ;
 
+bool checkActive(inputs * data,main_outs* at);
+float crownfractionburn(inputs* data, main_outs* at);
+float final_rate_of_spread10(inputs *data);
 // Back fire with CROS 
 float backfire_ros10(fire_struc *hptr, snd_outs *sec) ;
 
@@ -90,7 +93,7 @@ float backfire_ros10(fire_struc *hptr, snd_outs *sec) ;
 float slope_effect(inputs * data);
 
 // Main function to populate spread outputs based on inputs provided from main class
-void calculate(inputs *data,  fuel_coefs * ptr, main_outs *at, snd_outs *sec, fire_struc *hptr, fire_struc *fptr,fire_struc *bptr);
+void calculate(inputs *data,  fuel_coefs * ptr, main_outs *at, snd_outs *sec, fire_struc *hptr, fire_struc *fptr,fire_struc *bptr,bool & activeCrown);
 
 void determine_destiny_metrics(inputs* data, fuel_coefs* ptr, main_outs* at);
 
