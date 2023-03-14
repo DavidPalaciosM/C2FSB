@@ -93,6 +93,7 @@ class Cell2Fire {
 		 std::vector<float>Intensities;
 		 std::vector<float>crownFraction;
 		 std::vector<float>RateOfSpreads;
+		 std::vector<float>FlameLengths;
 		 std::vector<std::vector<int>> IgnitionSets;
 
 		 // Sets
