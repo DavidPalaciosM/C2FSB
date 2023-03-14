@@ -251,6 +251,11 @@ def ParseInputs():
                         help="Generates ASCII files with Boolean for Crown Fire if correspondes",
                         dest="OutCrown",
                         default=False,
+                        action='store_true') 
+    parser.add_argument("--out-cfb",
+                        help="Generates ASCII files with Crown Fire Fuel Consumption if correspondes",
+                        dest="OutCrownConsumption",
+                        default=False,
                         action='store_true')                                                                        
     parser.add_argument("--Prometheus-tuned",
                         help="Activates the predefined tuning parameters based on Prometheus",
