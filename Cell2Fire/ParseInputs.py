@@ -311,10 +311,10 @@ def ParseInputs():
     
     # Floats
     parser.add_argument("--Fire-Period-Length",
-                        help="Fire Period length in minutes (needed for ROS computations). Default 60",
+                        help="Fire Period length in minutes (needed for ROS computations). Default 1.0",
                         dest="input_PeriodLen",
                         type=float,
-                        default=60)                    
+                        default=1.0)                    
     parser.add_argument("--Weather-Period-Length",
                         help="Weather Period length in minutes (needed weather update). Default 60",
                         dest="weather_period_len",
