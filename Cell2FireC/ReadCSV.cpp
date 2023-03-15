@@ -29,7 +29,7 @@ std::vector<std::vector<std::string>> CSVReader::getData(){
 	std::ifstream file(this->fileName);
 	std::vector<std::vector<std::string> > dataList;
 	std::string line = "";
-	
+
 	// Iterate through each line and split the content using delimeter
 	while (getline(file, line))
 	{
@@ -79,7 +79,6 @@ void CSVReader::parseDF(inputs * df_ptr, std::vector<std::vector<std::string>> &
 	
 	// Loop over cells (populating per row)
 	for (i=1; i <= NCells; i++){
-		//printf("Populating DF for cell %d\n", i);
 		faux = DF[i][0].append(" ").c_str();
 		
 		if (DF[i][3].compare("") == 0) elev = 0;
@@ -197,8 +196,6 @@ void CSVReader::parseWeatherDF(weatherDF * wdf_ptr, std::vector<std::vector<std:
 	//Floats 
 	float ws, waz;
 	
-	//Ints 
-	int scenario;
 	
 	// Loop over cells (populating per row)
 	for (i=1; i <= WPeriods; i++){
@@ -216,14 +213,11 @@ void CSVReader::parseWeatherDF(weatherDF * wdf_ptr, std::vector<std::vector<std:
 		if (DF[i][2].compare("") == 0) ws = 0;
 		else ws = std::stof (DF[i][2], &sz);
 		
-		if (DF[i][4].compare("") == 0) scenario = 0;
-		else scenario = std::stof (DF[i][4], &sz);
 		
 		// Set values
 		wdf_ptr->instance = instance;
 		wdf_ptr->datetime = datetime;
 		wdf_ptr->ws=ws; wdf_ptr->waz=waz; 
-		wdf_ptr->scenario = scenario;
 			
 		// Next pointer
 		wdf_ptr++;
@@ -327,7 +321,6 @@ void CSVReader::parseForestDF(forestDF * frt_ptr, std::vector<std::vector<std::s
 	std::string::size_type sz;   // alias of size_t
 	std::unordered_map<std::string, int> Aux;
 	std::vector<int> Aux2;
-
 	cols = std::stoi(DF[0][1], &sz);
 	rows = std::stoi(DF[1][1], &sz);
 
@@ -502,7 +495,7 @@ void CSVReader::printDF(inputs df){
 
 
 void CSVReader::printWeatherDF(weatherDF wdf){
-	std::cout << wdf.scenario; std::cout << " " << wdf.datetime; 
+	std::cout << " " << wdf.datetime; 
 	std::cout << " " << wdf.ws; std::cout << " " << wdf.waz; 
 }
 

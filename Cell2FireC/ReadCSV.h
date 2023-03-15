@@ -21,7 +21,6 @@
 typedef struct
    { std::string instance, datetime;
       float ws, waz;
-      int scenario;
    } weatherDF;
    
  /*
@@ -55,7 +54,7 @@ public:
 	
 	//Populate DF (Spanish version)
 	void parseDF(inputs * df_ptr, std::vector<std::vector<std::string>> & DF, arguments* args_ptr,int NCells);
-	
+		
 	// Populate NFtypes (Spanish version)
 	void parseNDF(std::vector<int> & NFTypes, std::vector<std::vector<std::string>> & DF, int NCells);
 	
